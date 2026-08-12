@@ -6,4 +6,13 @@ public class Carro {
 	private double quilometragematual;
 	private boolean esta_ligado;
 	
+	public Carro() {
+		
+		
+	}
+	
+	public static void Main(String[] Args) {
+		new Carro();
+	}
 }
+
