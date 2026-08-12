@@ -1,6 +1,7 @@
 
 public class Sistema {
 	public Sistema() {
+		System.out.println("Teste de sistema que interliga classes");
 		Pessoa p1 = new Pessoa();
 		Pessoa p2 = new Pessoa();
 		
