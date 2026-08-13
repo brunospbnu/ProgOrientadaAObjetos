@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Sistema {
+public class Sistema<E> {
 	int opcao = 0;
+	ArrayList<Carro> carrosCadastrados = new ArrayList<> ();
 	Scanner teclado = new Scanner(System.in);
 	
 	public Sistema() {
