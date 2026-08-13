@@ -1,7 +1,7 @@
 
 public class Carro {
 	private Modelo modelo;
-	private COR cor;
+	private COR corAtual;
 	private int anoFabricacao;
 	private double quilometragematual;
 	private boolean esta_ligado;
@@ -11,7 +11,7 @@ public class Carro {
 	}
 	
 	public COR getCor( ) {
-		return this.cor;
+		return this.corAtual;
 	}
 	
 	public int getAnoFabricacao() {
@@ -22,8 +22,15 @@ public class Carro {
 		return quilometragematual;
 	}
 	
-	public boolean getEsta_Ligado() {
-		return esta_ligado;
+	public String getEsta_Ligado() {
+		String estado;
+		if (esta_ligado) {
+			estado = "SIM";
+		}
+		else {
+			estado = "NÃO";
+		}
+		return estado;
 	}
 	
 	public void setModelo(String modeloAtual) {
@@ -32,23 +39,23 @@ public class Carro {
 		
 	}
 	
-	public void setCor() {
+	public void setCor(COR corDigitada) {
+		this.corAtual = corDigitada;
 		
-		// PENDENTE
 	}
 	
-	public void setAnoFabricacao() {
+	public void setAnoFabricacao(int anoDigitado) {
+		this.anoFabricacao = anoDigitado;
 		
-		// PENDENTE
 	}
 	
-	public void setQuilometragemAtual() {
+	public void setQuilometragemAtual(double quilometragemDigitada) {
+		this.quilometragematual = quilometragemDigitada;
 		
-		// PENDENTE
 	}
 	
-	public void setEsta_Ligado() {
-		
-		// PENDENTE
+	public void setEsta_Ligado(boolean estadoInformado) {
+		this.esta_ligado = estadoInformado;
 	}
+
 }
