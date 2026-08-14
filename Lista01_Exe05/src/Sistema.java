@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Sistema<E> {
@@ -15,7 +14,7 @@ public class Sistema<E> {
 	private void menu() {
 		 System.out.println("---- Programa para cadastrar Carros ----");
 		 do {
-			 System.out.println("Selecione uma opção: \n\r 1 - Cadastrar Carro \n\r 2 - Excluir carro \n\r 3 - Mostrar carros \n\r 0 - Encerrar programa");
+			 System.out.println("-------------------------- \n Selecione uma opção: \n\r 1 - Cadastrar Carro \n\r 2 - Excluir carro \n\r 3 - Mostrar carros \n\r 0 - Encerrar programa");
 			 opcao = teclado.nextInt();
 			 while (opcao < 0 || opcao > 3 ) {
 				 System.out.print("Opção inválida! Informe uma opção válida: ");
@@ -23,7 +22,7 @@ public class Sistema<E> {
 	            }
 			 executaropcao();
 			 if (opcao == 0) {
-				 System.out.println("Encerrando o sistema !!! ");
+				 System.out.println("Sistema encerrado !!!");
 			 }
 		} while (opcao != 0);
 	}
@@ -44,7 +43,7 @@ public class Sistema<E> {
 		private void cadastrarcarro() {
 			Carro carroCriado = new Carro();
 			
-			System.out.println("Informe o modelo do Carro");
+			System.out.print("Informe o modelo do Carro: ");
 			String modeloDigitado = teclado.next();
 			carroCriado.setModelo(modeloDigitado);
 			
@@ -67,15 +66,15 @@ public class Sistema<E> {
 	        int opcao = teclado.nextInt();
 	        carroCriado.setCor(vetorDeCores[opcao - 1]);
 	        
-	        System.out.println("Informe o ano de fabricação: ");
+	        System.out.print("Informe o ano de fabricação: ");
 	        int anoDigitado = teclado.nextInt();
 	        carroCriado.setAnoFabricacao(anoDigitado);
 	        
-	        System.out.println("Informe a quilometragem atual: ");
+	        System.out.print("Informe a quilometragem atual: ");
 	        double quilometragemDigitada = teclado.nextDouble();
 	        carroCriado.setQuilometragemAtual(quilometragemDigitada);
 	        
-	        System.out.println("Informe se o carro está ligado: \n 1- SIM \n 2- NÃO");
+	        System.out.println("Informe se o carro está ligado: \n 1- SIM \n 2- NÃO: ");
 	        int situacaoInformada = teclado.nextInt();
 	        while (situacaoInformada < 1 || situacaoInformada > 2 ) {
 				 System.out.print("Opção inválida! Informe uma opção válida: ");
@@ -89,7 +88,7 @@ public class Sistema<E> {
 	        }
 	        
 	        carrosCadastrados.add(carroCriado);
-	        System.out.println("Carro º " + carrosCadastrados.size() + " cadastrado.");
+	        System.out.println("Carro º " + carrosCadastrados.size() + " cadastrado. \n -----------------------------");
 		}
 		
 		private void excluirCarro() {
@@ -102,7 +101,8 @@ public class Sistema<E> {
 			}
 			System.out.println("Escolha o carro para excluir: ");
 			int indiceCarroAExcluir = teclado.nextInt();
-			carrosCadastrados.remove(indiceCarroAExcluir);
+			carrosCadastrados.remove(indiceCarroAExcluir-1);
+			System.out.println("Carro º " + indiceCarroAExcluir + " excluído ! \n ------------------------");
 		}
 		
 		private void mostrarCarros() {
@@ -112,6 +112,7 @@ public class Sistema<E> {
 				System.out.println(indice + ": Modelo = " + item.getModelo() + "; COR = " + item.getCor() + "; Ano de Fabricação = " + item.getAnoFabricacao() + "; Quilometragem = " + item.getQuilometragematual() + "; Está ligado? " + item.getEsta_Ligado());
 				indice++;
 			}
+			System.out.println("------------------------------------------");
 			
 		}
 	
