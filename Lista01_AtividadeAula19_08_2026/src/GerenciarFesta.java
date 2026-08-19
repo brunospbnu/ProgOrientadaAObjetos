@@ -67,7 +67,25 @@ public class GerenciarFesta {
 	}
 
 	private void listarTemas() {
-		// TODO fazer o metodo para listar temas.
+		System.out.println("Lista de Temas cadastrados: \n");
+		for (int i = 0; i < temas.length; i++) {
+			if (temas[i] == null) {
+				break;
+			}
+			System.out.println("Nome do Tema :" + temas[i].getNomeTema() + " | Valor Aluguel:  " + temas[i].getValorAluguel() + " | Cor da Toalha: " +
+					temas[i].getCorToalha());
+			Item[] itensDoTema = temas[i].getListaDeItens();
+			for (int j = 0; j < itensDoTema.length-1; j++) {
+				if (itensDoTema[j] == null) {
+					break;
+				}
+				String nomeItemAtual = itensDoTema[j].getNome();
+				int quantItemAtual = itensDoTema[j].getQnt();
+				System.out.println("Item Sequencial nº " + (j+1) + ") Nome: " + nomeItemAtual + " - Quantidade = " + quantItemAtual);
+			}
+			System.out.println("");
+				}
+			System.out.println("\n Fim da lista \n ");
 		
 	}
 
@@ -78,10 +96,6 @@ public class GerenciarFesta {
 								clientes[i].getDataPrimeiroCadastro());
 		}
 		System.out.println("\n Fim da lista \n ");
-		
-		if (quantAtualClientes == 0) {
-			System.out.println("NÃO HÁ CLIENTES CADASTRADOS !!!");
-		}
 		
 	}
 
@@ -98,7 +112,7 @@ public class GerenciarFesta {
 			nomeTema = teclado.next();
 		}
 		
-		System.out.print("Digite a cor da Toalha");
+		System.out.print("Digite a cor da Toalha: ");
 		String corToalha = teclado.next();
 		while (corToalha.length() < 3) {
 			System.out.print("A cor deve ter pelo menos 3 letras - Informe corretamente: ");
@@ -112,9 +126,49 @@ public class GerenciarFesta {
 			valorAluguel = teclado.nextFloat();
 		}
 		
-	
-		//TODO terminar o metodo de inserir tema.
 		
+		System.out.println("Iniciando o cadastro dos Itens do Tema: ");
+		Item[] itensAdicionados = new Item[20];
+		int quantItensAdicionados = 0;
+		int perguntaAdicionarOutro = 0;
+		
+		do {
+			System.out.print("Informe o nome do item: ");
+			String nomeItemAAdicionar = teclado.next();
+			while (nomeItemAAdicionar.length() < 3) {
+				System.out.print("Deve ter pelo menos 3 letras - Informe corretamente: ");
+				nomeItemAAdicionar = teclado.next();
+			}
+			System.out.print("Informe a quantidade do item: ");
+			int quantItemAtual = teclado.nextInt();
+			while (quantItemAtual <=0) {
+				System.out.print("A quantidade deve ser maior do que ZERO - Informe corretamente: ");
+				quantItemAtual = teclado.nextInt();
+			}
+			Item itemAtual = new Item();
+			itemAtual.setNome(nomeItemAAdicionar);
+			itemAtual.setQnt(quantItemAtual);
+			itensAdicionados[quantItensAdicionados] = itemAtual;
+			quantItensAdicionados++;
+			System.out.println("Item Adicionado !!!");
+			System.out.print("Deseja adicionar outro item? \n 1 - SIM \n 2 - NÃO \n");
+			perguntaAdicionarOutro = teclado.nextInt();
+			while (perguntaAdicionarOutro > 2  || perguntaAdicionarOutro < 1) {
+				System.out.print("Opção invalida - Informe corretamente (1 ou 2): ");
+				perguntaAdicionarOutro = teclado.nextInt();
+			}
+			
+		} while (perguntaAdicionarOutro == 1);
+		
+		Tema temaAtual = new Tema();
+		temaAtual.setNomeTema(nomeTema);
+		temaAtual.setCorToalha(corToalha);
+		temaAtual.setValorAluguel(valorAluguel);
+		temaAtual.setListaDeItens(itensAdicionados);
+		temas[quantAtualTema] = temaAtual;
+		quantAtualTema++;
+		
+		System.out.println("TEMA ADICIONADO !!! ");
 		
 	}
 
@@ -141,6 +195,8 @@ public class GerenciarFesta {
 		
 		clientes[quantAtualClientes] = c1;
 		quantAtualClientes++;
+		
+		System.out.println("Cliente cadastrado !!!");
 		
 	}
 
