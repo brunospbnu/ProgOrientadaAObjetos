@@ -78,11 +78,11 @@ public class GerenciarFesta {
 			String nomeClienteAMencionar = clienteAAnalisarAgora.getNome();
 			
 			System.out.println((i+1) + ") Data: " + formato.format(alugueis[i].getData()) 
-												+ " /n Hora Inicio: " + alugueis[i].getHorainicio() 
-												+ " /n Hora Fim: " + alugueis[i].getHoraFim() 
-												+ " /n Tema: " + nomeTemaAMencionar 
-												+ " /n Cliente: " + nomeClienteAMencionar
-												+ " /n Endereço do Evento: " + alugueis[i].getEndereço());
+												+ " \n Hora Inicio: " + alugueis[i].getHorainicio() 
+												+ " \n Hora Fim: " + alugueis[i].getHoraFim() 
+												+ " \n Tema: " + nomeTemaAMencionar 
+												+ " \n Cliente: " + nomeClienteAMencionar
+												+ " \n Endereço do Evento: " + alugueis[i].getEndereço());
 		}
 		
 	}
@@ -113,7 +113,7 @@ public class GerenciarFesta {
 	private void listarClientes() {
 		System.out.println("Lista de clientes cadastrados: \n");
 		for (int i = 0; i < quantAtualClientes; i++) {
-			System.out.println((i+1)+ ") Nome:" + clientes[i].getNome() + " - " + clientes[i].getTelefone() + "\n Data Cadastro: " +
+			System.out.println((i+1)+ ") Nome: " + clientes[i].getNome() + " - " + clientes[i].getTelefone() + "\n Data Cadastro: " +
 								clientes[i].getDataPrimeiroCadastro());
 		}
 		System.out.println("\n Fim da lista \n ");
@@ -164,8 +164,7 @@ public class GerenciarFesta {
 		System.out.print("Informe o número do Tema escolhido: ");
 		int temaEscolhido = teclado.nextInt();
 		temaEscolhido = temaEscolhido - 1;
-		Tema temaAtual = new Tema();
-		temaAtual = temas[temaEscolhido];
+		Tema temaAtual = temas[temaEscolhido];
 		System.out.println("Tema definido !");
 		
 		
@@ -174,8 +173,7 @@ public class GerenciarFesta {
 		System.out.print("Informe o número do Cliente escolhido: ");
 		int clienteEscolhido = teclado.nextInt();
 		clienteEscolhido = clienteEscolhido - 1;
-		Cliente clienteAtual = new Cliente();
-		clienteAtual = clientes[clienteEscolhido];
+		Cliente clienteAtual = clientes[clienteEscolhido];
 		System.out.println("Cliente definido !");
 		
 		
@@ -230,7 +228,10 @@ public class GerenciarFesta {
 		int quantItensAdicionados = 0;
 		int perguntaAdicionarOutro = 0;
 		
-		do {
+		System.out.print("Deseja adicionar um item? \n 1 - SIM \n 2 - NÃO \n");
+		perguntaAdicionarOutro = teclado.nextInt();
+		
+		while (perguntaAdicionarOutro == 1) {
 			System.out.print("Informe o nome do item: ");
 			String nomeItemAAdicionar = teclado.next();
 			while (nomeItemAAdicionar.length() < 3) {
@@ -256,7 +257,7 @@ public class GerenciarFesta {
 				perguntaAdicionarOutro = teclado.nextInt();
 			}
 			
-		} while (perguntaAdicionarOutro == 1);
+		}
 		
 		Tema temaAtual = new Tema();
 		temaAtual.setNomeTema(nomeTema);
@@ -279,7 +280,7 @@ public class GerenciarFesta {
 			nome = teclado.next();
 		}
 		
-		System.out.print("Digite o telefone do cliente");
+		System.out.print("Digite o telefone do cliente: ");
 		String telefone = teclado.next();
 		while (telefone.length() < 11) {
 			System.out.print("O telefone deve conter 11 digitos - Informe um corretamente: ");
