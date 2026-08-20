@@ -70,11 +70,9 @@ public class GerenciarFesta {
 			if (alugueis[i] == null) {
 				break;
 			}
-			Tema temaAAnalisarAgora = new Tema();
-			temaAAnalisarAgora = alugueis[i].getTema();
+			Tema temaAAnalisarAgora = alugueis[i].getTema();
 			String nomeTemaAMencionar = temaAAnalisarAgora.getNomeTema();
-			Cliente clienteAAnalisarAgora = new Cliente();
-			clienteAAnalisarAgora = alugueis[i].getCliente();
+			Cliente clienteAAnalisarAgora = alugueis[i].getCliente();
 			String nomeClienteAMencionar = clienteAAnalisarAgora.getNome();
 			
 			System.out.println((i+1) + ") Data: " + formato.format(alugueis[i].getData()) 
@@ -86,7 +84,11 @@ public class GerenciarFesta {
 		}
 		
 	}
-
+	
+	/* 
+	 Se dois metodos tiverem o mesmo nome, um sem parametro e outro com, o Java vai saber qual utilizar com base no parametro passado ou não.
+	 Isso se chama Polimorfismo de métodos ou sobrecarga de métodos.
+	*/
 	private void listarTemas() {
 		System.out.println("Lista de Temas cadastrados: \n");
 		for (int i = 0; i < temas.length; i++) {
@@ -109,6 +111,21 @@ public class GerenciarFesta {
 			System.out.println("\n Fim da lista \n ");
 		
 	}
+	
+	@SuppressWarnings("unused")
+	private void listarUmTema (int indice) {
+		System.out.println((indice+1)+ ") Nome do Tema :" + temas[indice].getNomeTema() + " | Valor Aluguel:  " + temas[indice].getValorAluguel() + " | Cor da Toalha: " +
+				temas[indice].getCorToalha());
+		Item[] itensDoTema = temas[indice].getListaDeItens();
+		for (int j = 0; j < itensDoTema.length-1; j++) {
+			if (itensDoTema[j] == null) {
+				break;
+			}
+			String nomeItemAtual = itensDoTema[j].getNome();
+			int quantItemAtual = itensDoTema[j].getQnt();
+			System.out.println("Item Sequencial nº " + (j+1) + ") Nome: " + nomeItemAtual + " - Quantidade = " + quantItemAtual);
+		}
+	}
 
 	private void listarClientes() {
 		System.out.println("Lista de clientes cadastrados: \n");
@@ -118,6 +135,12 @@ public class GerenciarFesta {
 		}
 		System.out.println("\n Fim da lista \n ");
 		
+	}
+	
+	@SuppressWarnings("unused")
+	private void listarUmCliente (int indice) {
+		System.out.println((indice+1)+ ") Nome: " + clientes[indice].getNome() + " - " + clientes[indice].getTelefone() + "\n Data Cadastro: " +
+				clientes[indice].getDataPrimeiroCadastro());
 	}
 
 	private void inserirAluguel() {
