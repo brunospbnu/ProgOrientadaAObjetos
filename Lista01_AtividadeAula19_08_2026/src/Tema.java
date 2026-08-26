@@ -1,14 +1,24 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tema {
-	private Item[] listaDeItens;
+	//Se fosse vetor: private Item[] listaDeItens;
+	
+	private List<Item> listaDeItens;
 	private float valorAluguel;
 	private String corToalha;
 	private String nomeTema;
 	
-	public Item[] getListaDeItens() {
-		return listaDeItens;
+	public Tema( ) {
+		listaDeItens = new ArrayList<Item>();
 	}
-	public void setListaDeItens(Item[] listaDeItens) {
+	
+	public List<Item> getListaDeItens() {
+		return listaDeItens;
+		
+	}
+	
+	public void setListaDeItens(List<Item> listaDeItens) {
 		if (listaDeItens != null) {
 			this.listaDeItens = listaDeItens;
 		} else {
@@ -16,9 +26,11 @@ public class Tema {
 		}
 		
 	}
+	
 	public float getValorAluguel() {
 		return valorAluguel;
 	}
+	
 	public void setValorAluguel(float valorAluguel) {
 		if (valorAluguel > 0) {
 			this.valorAluguel = valorAluguel;

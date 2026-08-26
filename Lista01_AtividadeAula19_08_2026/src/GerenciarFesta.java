@@ -1,22 +1,29 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class GerenciarFesta {
 	Scanner teclado;
-	private Cliente[] clientes;
-	private Tema[] temas;
-	private Aluguel[] alugueis;
+	private List<Cliente> clientes;
+	private List<Tema> temas;
+	private List<Aluguel> alugueis;
+	/*
+	Variaveis desnecessárias para ArrayList
+	
 	private int quantAtualClientes;
 	private int quantAtualTema;
 	private int quantAtualAluguel;
 	
+	*/
+	
 	public GerenciarFesta() {
 		teclado = new Scanner(System.in);
-		clientes = new Cliente[20];
-		temas = new Tema[20];
-		alugueis = new Aluguel[20];
+		clientes = new ArrayList<Cliente>();
+		temas = new ArrayList<Tema>();
+		alugueis = new ArrayList<Aluguel>();
 		
 		String menuTexto = "\n ----- Menu Principal - Escolha uma opção: ----- \n" 
 						+ "1 - inserir cliente \n"
@@ -66,21 +73,26 @@ public class GerenciarFesta {
 	private void listarAlugueis() {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		System.out.println("Lista de Alugueis cadastrados: \n");
-		for (int i = 0; i < alugueis.length; i++) {
-			if (alugueis[i] == null) {
+		for (int i = 0; i < alugueis.size(); i++) {
+			/* 
+			 	O if somente é necessário quando o vetor tem um valor já definido, para evitar imprimir null, para Array não precisa:
+			  	
+			  	if (alugueis[i] == null) {
 				break;
 			}
-			Tema temaAAnalisarAgora = alugueis[i].getTema();
+			*/
+			
+			Tema temaAAnalisarAgora = alugueis.get(i).getTema();
 			String nomeTemaAMencionar = temaAAnalisarAgora.getNomeTema();
-			Cliente clienteAAnalisarAgora = alugueis[i].getCliente();
+			Cliente clienteAAnalisarAgora = alugueis.get(i).getCliente();
 			String nomeClienteAMencionar = clienteAAnalisarAgora.getNome();
 			
-			System.out.println((i+1) + ") Data: " + formato.format(alugueis[i].getData()) 
-												+ " \n Hora Inicio: " + alugueis[i].getHorainicio() 
-												+ " \n Hora Fim: " + alugueis[i].getHoraFim() 
+			System.out.println((i+1) + ") Data: " + formato.format(alugueis.get(i).getData()) 
+												+ " \n Hora Inicio: " + alugueis.get(i).getHorainicio() 
+												+ " \n Hora Fim: " + alugueis.get(i).getHoraFim() 
 												+ " \n Tema: " + nomeTemaAMencionar 
 												+ " \n Cliente: " + nomeClienteAMencionar
-												+ " \n Endereço do Evento: " + alugueis[i].getEndereço());
+												+ " \n Endereço do Evento: " + alugueis.get(i).getEndereço());
 		}
 		
 	}
@@ -91,19 +103,29 @@ public class GerenciarFesta {
 	*/
 	private void listarTemas() {
 		System.out.println("Lista de Temas cadastrados: \n");
-		for (int i = 0; i < temas.length; i++) {
+		for (int i = 0; i < temas.size(); i++) {
+			
+			/*
 			if (temas[i] == null) {
 				break;
 			}
-			System.out.println((i+1)+ ") Nome do Tema :" + temas[i].getNomeTema() + " | Valor Aluguel:  " + temas[i].getValorAluguel() + " | Cor da Toalha: " +
-					temas[i].getCorToalha());
-			Item[] itensDoTema = temas[i].getListaDeItens();
-			for (int j = 0; j < itensDoTema.length-1; j++) {
+			*/
+			
+			System.out.println((i+1)+ ") Nome do Tema :" + temas.get(i).getNomeTema() + " | Valor Aluguel:  " + temas.get(i).getValorAluguel() + " | Cor da Toalha: " +
+					temas.get(i).getCorToalha());
+			
+			List<Item> itensDoTema = temas.get(i).getListaDeItens();
+			
+			for (int j = 0; j < itensDoTema.size(); j++) {
+				
+				/*
 				if (itensDoTema[j] == null) {
 					break;
 				}
-				String nomeItemAtual = itensDoTema[j].getNome();
-				int quantItemAtual = itensDoTema[j].getQnt();
+				*/
+				
+				String nomeItemAtual = itensDoTema.get(j).getNome();
+				int quantItemAtual = itensDoTema.get(j).getQnt();
 				System.out.println("Item Sequencial nº " + (j+1) + ") Nome: " + nomeItemAtual + " - Quantidade = " + quantItemAtual);
 			}
 			System.out.println("");
@@ -114,33 +136,36 @@ public class GerenciarFesta {
 	
 	@SuppressWarnings("unused")
 	private void listarUmTema (int indice) {
-		System.out.println((indice+1)+ ") Nome do Tema :" + temas[indice].getNomeTema() + " | Valor Aluguel:  " + temas[indice].getValorAluguel() + " | Cor da Toalha: " +
-				temas[indice].getCorToalha());
-		Item[] itensDoTema = temas[indice].getListaDeItens();
-		for (int j = 0; j < itensDoTema.length-1; j++) {
+		System.out.println((indice+1)+ ") Nome do Tema :" + temas.get(indice).getNomeTema() + " | Valor Aluguel:  " + temas.get(indice).getValorAluguel() + " | Cor da Toalha: " +
+				temas.get(indice).getCorToalha());
+		List<Item> itensDoTema = temas.get(indice).getListaDeItens();
+		
+		for (int j = 0; j < itensDoTema.size(); j++) {
+			/*
 			if (itensDoTema[j] == null) {
 				break;
 			}
-			String nomeItemAtual = itensDoTema[j].getNome();
-			int quantItemAtual = itensDoTema[j].getQnt();
+			*/
+			String nomeItemAtual = itensDoTema.get(j).getNome();
+			int quantItemAtual = itensDoTema.get(j).getQnt();
 			System.out.println("Item Sequencial nº " + (j+1) + ") Nome: " + nomeItemAtual + " - Quantidade = " + quantItemAtual);
 		}
 	}
 
 	private void listarClientes() {
 		System.out.println("Lista de clientes cadastrados: \n");
-		for (int i = 0; i < quantAtualClientes; i++) {
-			System.out.println((i+1)+ ") Nome: " + clientes[i].getNome() + " - " + clientes[i].getTelefone() + "\n Data Cadastro: " +
-								clientes[i].getDataPrimeiroCadastro());
+		for (int i = 0; i < clientes.size(); i++) {
+			System.out.println((i+1)+ ") Nome: " + clientes.get(i).getNome() + " - " + clientes.get(i).getTelefone() + "\n Data Cadastro: " +
+								clientes.get(i).getDataPrimeiroCadastro());
 		}
 		System.out.println("\n Fim da lista \n ");
 		
 	}
 	
 	@SuppressWarnings("unused")
-	private void listarUmCliente (int indice) {
-		System.out.println((indice+1)+ ") Nome: " + clientes[indice].getNome() + " - " + clientes[indice].getTelefone() + "\n Data Cadastro: " +
-				clientes[indice].getDataPrimeiroCadastro());
+	private void listarUmCliente (int indiceDoCliente) {
+		System.out.println((indiceDoCliente+1)+ ") Nome: " + clientes.get(indiceDoCliente).getNome() + " - " + clientes.get(indiceDoCliente).getTelefone() + "\n Data Cadastro: " +
+				clientes.get(indiceDoCliente).getDataPrimeiroCadastro());
 	}
 
 	private void inserirAluguel() {
@@ -187,7 +212,7 @@ public class GerenciarFesta {
 		System.out.print("Informe o número do Tema escolhido: ");
 		int temaEscolhido = teclado.nextInt();
 		temaEscolhido = temaEscolhido - 1;
-		Tema temaAtual = temas[temaEscolhido];
+		Tema temaAtual =temas.get(temaEscolhido);
 		System.out.println("Tema definido !");
 		
 		
@@ -196,7 +221,7 @@ public class GerenciarFesta {
 		System.out.print("Informe o número do Cliente escolhido: ");
 		int clienteEscolhido = teclado.nextInt();
 		clienteEscolhido = clienteEscolhido - 1;
-		Cliente clienteAtual = clientes[clienteEscolhido];
+		Cliente clienteAtual = clientes.get(clienteEscolhido);
 		System.out.println("Cliente definido !");
 		
 		
@@ -216,8 +241,9 @@ public class GerenciarFesta {
 		aluguelAtual.setCliente(clienteAtual);
 		aluguelAtual.setEndereço(endereçoDigitado);
 		
-		alugueis[quantAtualAluguel] = aluguelAtual;
-		quantAtualAluguel++;
+		alugueis.add(aluguelAtual);
+		
+		// quantAtualAluguel++;
 		
 		System.out.println("ALUGUEL CADASTRADO !!! ");
 		
@@ -247,8 +273,8 @@ public class GerenciarFesta {
 		
 		
 		System.out.println("Iniciando o cadastro dos Itens do Tema: ");
-		Item[] itensAdicionados = new Item[20];
-		int quantItensAdicionados = 0;
+		List<Item> itensAdicionados = new ArrayList<Item>();
+		// int quantItensAdicionados = 0;
 		int perguntaAdicionarOutro = 0;
 		
 		System.out.print("Deseja adicionar um item? \n 1 - SIM \n 2 - NÃO \n");
@@ -270,8 +296,10 @@ public class GerenciarFesta {
 			Item itemAtual = new Item();
 			itemAtual.setNome(nomeItemAAdicionar);
 			itemAtual.setQnt(quantItemAtual);
-			itensAdicionados[quantItensAdicionados] = itemAtual;
-			quantItensAdicionados++;
+			itensAdicionados.add(itemAtual);
+			
+			// quantItensAdicionados++;
+			
 			System.out.println("Item Adicionado !!!");
 			System.out.print("Deseja adicionar outro item? \n 1 - SIM \n 2 - NÃO \n");
 			perguntaAdicionarOutro = teclado.nextInt();
@@ -287,8 +315,10 @@ public class GerenciarFesta {
 		temaAtual.setCorToalha(corToalha);
 		temaAtual.setValorAluguel(valorAluguel);
 		temaAtual.setListaDeItens(itensAdicionados);
-		temas[quantAtualTema] = temaAtual;
-		quantAtualTema++;
+		
+		temas.add(temaAtual);
+		
+		// quantAtualTema++;
 		
 		System.out.println("TEMA ADICIONADO !!! ");
 		
@@ -315,8 +345,9 @@ public class GerenciarFesta {
 		c1.setTelefone(telefone);
 		c1.setDataPrimeiroCadastro(new Date());
 		
-		clientes[quantAtualClientes] = c1;
-		quantAtualClientes++;
+		clientes.add(c1);
+		
+		// quantAtualClientes++;
 		
 		System.out.println("Cliente cadastrado !!!");
 		
