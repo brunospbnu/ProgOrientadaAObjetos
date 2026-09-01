@@ -3,10 +3,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class GerenciarFesta {
-	Scanner teclado;
+	// Removido: Scanner teclado;
 	private List<Cliente> clientes;
 	private List<Tema> temas;
 	private List<Aluguel> alugueis;
@@ -20,7 +20,7 @@ public class GerenciarFesta {
 	*/
 	
 	public GerenciarFesta() {
-		teclado = new Scanner(System.in);
+		// Removido: teclado = new Scanner(System.in);
 		clientes = new ArrayList<Cliente>();
 		temas = new ArrayList<Tema>();
 		alugueis = new ArrayList<Aluguel>();
@@ -37,8 +37,9 @@ public class GerenciarFesta {
 		int opcao = 0;
 		
 		do {
-			System.out.println(menuTexto + ":");
-			opcao = teclado.nextInt();
+			System.out.println(menuTexto + "\n Digite a opção: ");
+			String strigOpcao = JOptionPane.showInputDialog(menuTexto + "\n Digite a opção: ");
+			opcao = Integer.parseInt(strigOpcao);
 			
 			switch (opcao) {
 			case 1:
@@ -61,10 +62,12 @@ public class GerenciarFesta {
 				break;
 			case 0:
 				System.out.println(" Sistema Encerrado ");
+				JOptionPane.showMessageDialog(null," Sistema Encerrado ");
 				break;
 
 			default:
 				System.out.println(" Opção Inválida !!! ");
+				JOptionPane.showMessageDialog(null," Opção Inválida !!! ");
 				break;
 			}
 		} while (opcao != 0);
@@ -72,7 +75,7 @@ public class GerenciarFesta {
 	
 	private void listarAlugueis() {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.println("Lista de Alugueis cadastrados: \n");
+		String listaDeAlugueis = "Lista de Alugueis cadastrados: \n";
 		for (int i = 0; i < alugueis.size(); i++) {
 			/* 
 			 	O if somente é necessário quando o vetor tem um valor já definido, para evitar imprimir null, para Array não precisa:
@@ -87,14 +90,15 @@ public class GerenciarFesta {
 			Cliente clienteAAnalisarAgora = alugueis.get(i).getCliente();
 			String nomeClienteAMencionar = clienteAAnalisarAgora.getNome();
 			
-			System.out.println((i+1) + ") Data: " + formato.format(alugueis.get(i).getData()) 
+			listaDeAlugueis = listaDeAlugueis + (i+1) + ") Data: " + formato.format(alugueis.get(i).getData()) 
 												+ " \n Hora Inicio: " + alugueis.get(i).getHorainicio() 
 												+ " \n Hora Fim: " + alugueis.get(i).getHoraFim() 
 												+ " \n Tema: " + nomeTemaAMencionar 
 												+ " \n Cliente: " + nomeClienteAMencionar
-												+ " \n Endereço do Evento: " + alugueis.get(i).getEndereço());
+												+ " \n Endereço do Evento: " + alugueis.get(i).getEndereço();
 		}
 		
+		JOptionPane.showMessageDialog(null, listaDeAlugueis);
 	}
 	
 	/* 
@@ -102,7 +106,7 @@ public class GerenciarFesta {
 	 Isso se chama Polimorfismo de métodos ou sobrecarga de métodos.
 	*/
 	private void listarTemas() {
-		System.out.println("Lista de Temas cadastrados: \n");
+		String listaDeTemas = "Lista de Temas cadastrados: \n";
 		for (int i = 0; i < temas.size(); i++) {
 			
 			/*
@@ -111,8 +115,8 @@ public class GerenciarFesta {
 			}
 			*/
 			
-			System.out.println((i+1)+ ") Nome do Tema :" + temas.get(i).getNomeTema() + " | Valor Aluguel:  " + temas.get(i).getValorAluguel() + " | Cor da Toalha: " +
-					temas.get(i).getCorToalha());
+			listaDeTemas = listaDeTemas + ((i+1)+ ") Nome do Tema :" + temas.get(i).getNomeTema() + " | Valor Aluguel:  " + temas.get(i).getValorAluguel() + " | Cor da Toalha: " +
+					temas.get(i).getCorToalha() + "\n");
 			
 			List<Item> itensDoTema = temas.get(i).getListaDeItens();
 			
@@ -126,11 +130,15 @@ public class GerenciarFesta {
 				
 				String nomeItemAtual = itensDoTema.get(j).getNome();
 				int quantItemAtual = itensDoTema.get(j).getQnt();
-				System.out.println("Item Sequencial nº " + (j+1) + ") Nome: " + nomeItemAtual + " - Quantidade = " + quantItemAtual);
+				
+				listaDeTemas = listaDeTemas + "Item Sequencial nº " + (j+1) + ") Nome: " + nomeItemAtual + " - Quantidade = " + quantItemAtual + "\n";
 			}
-			System.out.println("");
+			
+			listaDeTemas = listaDeTemas + "\n";
 				}
-			System.out.println("\n Fim da lista \n ");
+		listaDeTemas = listaDeTemas + "\n Fim da lista \n ";
+		
+		JOptionPane.showMessageDialog(null, listaDeTemas);
 		
 	}
 	
@@ -153,13 +161,14 @@ public class GerenciarFesta {
 	}
 
 	private void listarClientes() {
-		System.out.println("Lista de clientes cadastrados: \n");
+		String listaDeClientes = "Lista de clientes cadastrados: \n";
 		for (int i = 0; i < clientes.size(); i++) {
-			System.out.println((i+1)+ ") Nome: " + clientes.get(i).getNome() + " - " + clientes.get(i).getTelefone() + "\n Data Cadastro: " +
-								clientes.get(i).getDataPrimeiroCadastro());
+			listaDeClientes = listaDeClientes + "\n" + (i+1)+ ") Nome: " + clientes.get(i).getNome() + " - " + clientes.get(i).getTelefone() + "\n Data Cadastro: " +
+								clientes.get(i).getDataPrimeiroCadastro();
 		}
-		System.out.println("\n Fim da lista \n ");
+		listaDeClientes = listaDeClientes + "\n Fim da lista \n ";
 		
+		JOptionPane.showMessageDialog(null, listaDeClientes);
 	}
 	
 	@SuppressWarnings("unused")
@@ -169,67 +178,78 @@ public class GerenciarFesta {
 	}
 
 	private void inserirAluguel() {
-		System.out.println(" ---- Cadastro de Aluguel ---- \n Informe a data do evento (DD/MM/AAAA): ");
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		String dataEscolhida = teclado.next();
+		String dataEscolhida = JOptionPane.showInputDialog(" ---- Cadastro de Aluguel ---- \n Informe a data do evento (DD/MM/AAAA): ");
 		boolean dataValida = false;
 		Date dataConvertida = null;
 		while (!dataValida) {
 			
 			try {
 				dataConvertida = formato.parse(dataEscolhida);
+				JOptionPane.showMessageDialog(null, "Data capturada com sucesso: " + formato.format(dataConvertida));
 				System.out.println("Data capturada com sucesso: " + formato.format(dataConvertida));
 				dataValida = true;
 				} 
 			
 			catch (ParseException e) {
-				System.out.println("Erro: Formato de data inválido! Use o padrão dd/mm/aaaa.");
-				dataEscolhida = teclado.next();
+				dataEscolhida = JOptionPane.showInputDialog("Erro: Formato de data inválido! Use o padrão dd/mm/aaaa.");
 				
 			}
 		}
 		
 		System.out.print("Informe a hora de inicio do evento, de 0 até 23: ");
-		int horaInicioEscolhida = teclado.nextInt();
+		String stringHoraEscolhida = JOptionPane.showInputDialog("Informe a hora de inicio do evento, de 0 até 23: ");
+		int horaInicioEscolhida = Integer.parseInt(stringHoraEscolhida);
+		
 		while (horaInicioEscolhida < 0 || horaInicioEscolhida > 23) {
 			System.out.println("A hora de inicio deve estar entre 0 e 23 - Informe corretamente: ");
-			horaInicioEscolhida = teclado.nextInt();
+			stringHoraEscolhida = JOptionPane.showInputDialog("A hora de inicio deve estar entre 0 e 23 - Informe corretamente: ");
+			horaInicioEscolhida = Integer.parseInt(stringHoraEscolhida);
 		}
 		System.out.println("Hora INICIO definida !");
+		JOptionPane.showMessageDialog(null, "Hora INICIO definida !");
 		
 		
 		System.out.println("Informe a hora de fim do evento, de 0 até 23");
-		int horaFimEscolhida = teclado.nextInt();
+		String stringHoraFimEscolhida = JOptionPane.showInputDialog("Informe a hora de fim do evento, de 0 até 23");
+		int horaFimEscolhida = Integer.parseInt(stringHoraFimEscolhida);
 		while (horaFimEscolhida < 0 || horaFimEscolhida >23) {
-			System.out.println("A hora de inicio deve estar entre 0 e 23 - Informe corretamente: ");
-			horaFimEscolhida = teclado.nextInt();
+			stringHoraFimEscolhida = JOptionPane.showInputDialog("A hora de inicio deve estar entre 0 e 23 - Informe corretamente: ");
+			horaFimEscolhida = Integer.parseInt(stringHoraFimEscolhida);
 		}
 		System.out.println("Hora FIM definida !");
+		JOptionPane.showMessageDialog(null,"Hora FIM definida !");
 		
 		
-		System.out.println("Selecione o tema conforme a lista abaixo: ");
+		
+		System.out.println("Selecione o tema conforme a lista -  ");
 		listarTemas();
 		System.out.print("Informe o número do Tema escolhido: ");
-		int temaEscolhido = teclado.nextInt();
+		String stringTemaEscolhido = JOptionPane.showInputDialog("Selecione o tema conforme a lista - Informe o número do Tema escolhido: ");
+		int temaEscolhido = Integer.parseInt(stringTemaEscolhido);
 		temaEscolhido = temaEscolhido - 1;
-		Tema temaAtual =temas.get(temaEscolhido);
+		Tema temaAtual = temas.get(temaEscolhido);
 		System.out.println("Tema definido !");
+		JOptionPane.showMessageDialog(null, "Tema Definido !");
 		
 		
-		System.out.println("Selecione o cliente conforme a lista abaixo: ");
+		
+		System.out.println("Selecione o cliente conforme a lista - ");
 		listarClientes();
 		System.out.print("Informe o número do Cliente escolhido: ");
-		int clienteEscolhido = teclado.nextInt();
+		String stringClienteEscolhido = JOptionPane.showInputDialog("Selecione o cliente conforme a lista - Informe o número do Cliente escolhido:");
+		int clienteEscolhido = Integer.parseInt(stringClienteEscolhido);
 		clienteEscolhido = clienteEscolhido - 1;
 		Cliente clienteAtual = clientes.get(clienteEscolhido);
 		System.out.println("Cliente definido !");
+		JOptionPane.showMessageDialog(null, "Cliente definido !");
 		
 		
 		System.out.print("Informe o endereço do evento em texto livre: ");
-		String endereçoDigitado = teclado.next();
+		String endereçoDigitado = JOptionPane.showInputDialog("Informe o endereço do evento em texto livre: ");
 		while (endereçoDigitado == null || endereçoDigitado.isEmpty() || endereçoDigitado.length() < 3) {
 			System.out.print("Endereço inválido, informe um com 3 letras ou mais: ");
-			endereçoDigitado = teclado.next();
+			endereçoDigitado = JOptionPane.showInputDialog("Endereço inválido, informe um com 3 letras ou mais: ");
 		}
 		
 		
@@ -246,52 +266,61 @@ public class GerenciarFesta {
 		// quantAtualAluguel++;
 		
 		System.out.println("ALUGUEL CADASTRADO !!! ");
+		JOptionPane.showMessageDialog(null, "ALUGUEL CADASTRADO !!! ");
 		
 	}
 
 	private void inserirTema() {
 		System.out.print("----- Cadastro de Tema para os alugueis ----- \n Digite o nome do Tema: ");
-		String nomeTema = teclado.next();
+		String nomeTema = JOptionPane.showInputDialog("----- Cadastro de Tema para os alugueis ----- \n Digite o nome do Tema: ");
 		while (nomeTema.length() <3) {
 			System.out.print("O nome do Tema deve ter 3 letras ou mais - Informe um corretamente: ");
-			nomeTema = teclado.next();
+			nomeTema = JOptionPane.showInputDialog("O nome do Tema deve ter 3 letras ou mais - Informe um corretamente: ");
 		}
 		
 		System.out.print("Digite a cor da Toalha: ");
-		String corToalha = teclado.next();
+		String corToalha = JOptionPane.showInputDialog("Digite a cor da Toalha: ");
 		while (corToalha.length() < 3) {
 			System.out.print("A cor deve ter pelo menos 3 letras - Informe corretamente: ");
-			corToalha = teclado.next();
+			corToalha = JOptionPane.showInputDialog("A cor deve ter pelo menos 3 letras - Informe corretamente: ");
 		}
 		
 		System.out.print("Digite o valor do Aluguel: ");
-		float valorAluguel = teclado.nextFloat();
+		String stringValorAluguel = JOptionPane.showInputDialog("Digite o valor do Aluguel: ");
+		float valorAluguel = Float.parseFloat(stringValorAluguel);
 		while (valorAluguel <= 0) {
 			System.out.print("O valor do aluguel deve ser maior que ZERO - Informe corretamente: ");
-			valorAluguel = teclado.nextFloat();
+			stringValorAluguel = JOptionPane.showInputDialog("O valor do aluguel deve ser maior que ZERO - Informe corretamente: ");
+			valorAluguel = Float.parseFloat(stringValorAluguel);
 		}
 		
 		
 		System.out.println("Iniciando o cadastro dos Itens do Tema: ");
+		JOptionPane.showMessageDialog(null, "Iniciando o cadastro dos Itens do Tema: ");
+		
 		List<Item> itensAdicionados = new ArrayList<Item>();
 		// int quantItensAdicionados = 0;
 		int perguntaAdicionarOutro = 0;
 		
 		System.out.print("Deseja adicionar um item? \n 1 - SIM \n 2 - NÃO \n");
-		perguntaAdicionarOutro = teclado.nextInt();
+		String stringPerguntaAdicionarOutro = JOptionPane.showInputDialog("Deseja adicionar um item? \n 1 - SIM \n 2 - NÃO \n");
+		
+		perguntaAdicionarOutro = Integer.parseInt(stringPerguntaAdicionarOutro);
 		
 		while (perguntaAdicionarOutro == 1) {
 			System.out.print("Informe o nome do item: ");
-			String nomeItemAAdicionar = teclado.next();
+			String nomeItemAAdicionar = JOptionPane.showInputDialog("Informe o nome do item: ");
 			while (nomeItemAAdicionar.length() < 3) {
 				System.out.print("Deve ter pelo menos 3 letras - Informe corretamente: ");
-				nomeItemAAdicionar = teclado.next();
+				nomeItemAAdicionar = JOptionPane.showInputDialog("Deve ter pelo menos 3 letras - Informe corretamente: ");
 			}
 			System.out.print("Informe a quantidade do item: ");
-			int quantItemAtual = teclado.nextInt();
+			String stringQuantidadeItamAtual = JOptionPane.showInputDialog("Informe a quantidade do item: ");
+			int quantItemAtual = Integer.parseInt(stringQuantidadeItamAtual);
 			while (quantItemAtual <=0) {
 				System.out.print("A quantidade deve ser maior do que ZERO - Informe corretamente: ");
-				quantItemAtual = teclado.nextInt();
+				stringQuantidadeItamAtual = JOptionPane.showInputDialog("A quantidade deve ser maior do que ZERO - Informe corretamente: ");
+				quantItemAtual = Integer.parseInt(stringQuantidadeItamAtual);
 			}
 			Item itemAtual = new Item();
 			itemAtual.setNome(nomeItemAAdicionar);
@@ -302,10 +331,12 @@ public class GerenciarFesta {
 			
 			System.out.println("Item Adicionado !!!");
 			System.out.print("Deseja adicionar outro item? \n 1 - SIM \n 2 - NÃO \n");
-			perguntaAdicionarOutro = teclado.nextInt();
+			stringPerguntaAdicionarOutro = JOptionPane.showInputDialog("Item Adicionado !!! \n Deseja adicionar outro item? \n 1 - SIM \n 2 - NÃO \n");
+			perguntaAdicionarOutro = Integer.parseInt(stringPerguntaAdicionarOutro);
 			while (perguntaAdicionarOutro > 2  || perguntaAdicionarOutro < 1) {
 				System.out.print("Opção invalida - Informe corretamente (1 ou 2): ");
-				perguntaAdicionarOutro = teclado.nextInt();
+				stringPerguntaAdicionarOutro = JOptionPane.showInputDialog("Opção invalida - Informe corretamente (1 ou 2): ");
+				perguntaAdicionarOutro = Integer.parseInt(stringPerguntaAdicionarOutro);
 			}
 			
 		}
@@ -321,23 +352,24 @@ public class GerenciarFesta {
 		// quantAtualTema++;
 		
 		System.out.println("TEMA ADICIONADO !!! ");
+		JOptionPane.showMessageDialog(null, "TEMA ADICIONADO !!! ");
 		
 	}
 
 	private void inserirCliente() {
 		
 		System.out.print("Digite o nome do cliente: ");
-		String nome = teclado.next();
+		String nome = JOptionPane.showInputDialog("Digite o nome do cliente: ");
 		while (nome.length() <3) {
 			System.out.print("O nome do cliente deve ter 3 letras ou mais - Informe um corretamente: ");
-			nome = teclado.next();
+			nome = JOptionPane.showInputDialog("O nome do cliente deve ter 3 letras ou mais - Informe um corretamente: ");
 		}
 		
 		System.out.print("Digite o telefone do cliente: ");
-		String telefone = teclado.next();
+		String telefone = JOptionPane.showInputDialog("Digite o telefone do cliente: ");
 		while (telefone.length() < 11) {
 			System.out.print("O telefone deve conter 11 digitos - Informe um corretamente: ");
-			telefone = teclado.next();
+			telefone = JOptionPane.showInputDialog("O telefone deve conter 11 digitos - Informe um corretamente: ");
 		}
 		
 		Cliente c1 = new Cliente();
