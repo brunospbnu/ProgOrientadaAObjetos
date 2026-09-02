@@ -39,8 +39,12 @@ public class GerenciarFesta {
 		do {
 			System.out.println(menuTexto + "\n Digite a opção: ");
 			String strigOpcao = JOptionPane.showInputDialog(menuTexto + "\n Digite a opção: ");
-			opcao = Integer.parseInt(strigOpcao);
-			
+			if (strigOpcao == null){
+				opcao = 0;
+			}
+			else {
+				opcao = Integer.parseInt(strigOpcao);
+			}
 			switch (opcao) {
 			case 1:
 				inserirCliente();
@@ -198,12 +202,12 @@ public class GerenciarFesta {
 		}
 		
 		System.out.print("Informe a hora de inicio do evento, de 0 até 23: ");
-		String stringHoraEscolhida = JOptionPane.showInputDialog("Informe a hora de inicio do evento, de 0 até 23: ");
+		String stringHoraEscolhida = JOptionPane.showInputDialog("Informe a hora de INICIO do evento, de 0 até 23: ");
 		int horaInicioEscolhida = Integer.parseInt(stringHoraEscolhida);
 		
 		while (horaInicioEscolhida < 0 || horaInicioEscolhida > 23) {
 			System.out.println("A hora de inicio deve estar entre 0 e 23 - Informe corretamente: ");
-			stringHoraEscolhida = JOptionPane.showInputDialog("A hora de inicio deve estar entre 0 e 23 - Informe corretamente: ");
+			stringHoraEscolhida = JOptionPane.showInputDialog("A hora de INICIO deve estar entre 0 e 23 - Informe corretamente: ");
 			horaInicioEscolhida = Integer.parseInt(stringHoraEscolhida);
 		}
 		System.out.println("Hora INICIO definida !");
@@ -211,10 +215,10 @@ public class GerenciarFesta {
 		
 		
 		System.out.println("Informe a hora de fim do evento, de 0 até 23");
-		String stringHoraFimEscolhida = JOptionPane.showInputDialog("Informe a hora de fim do evento, de 0 até 23");
+		String stringHoraFimEscolhida = JOptionPane.showInputDialog("Informe a hora de FIM do evento, de 0 até 23");
 		int horaFimEscolhida = Integer.parseInt(stringHoraFimEscolhida);
 		while (horaFimEscolhida < 0 || horaFimEscolhida >23) {
-			stringHoraFimEscolhida = JOptionPane.showInputDialog("A hora de inicio deve estar entre 0 e 23 - Informe corretamente: ");
+			stringHoraFimEscolhida = JOptionPane.showInputDialog("A hora de FIM deve estar entre 0 e 23 - Informe corretamente: ");
 			horaFimEscolhida = Integer.parseInt(stringHoraFimEscolhida);
 		}
 		System.out.println("Hora FIM definida !");
