@@ -3,6 +3,11 @@ public class Produto {
 	private String nomeProduto;
 	private float valorUnitario;
 	
+	public Produto(String nomePassado, float valorUnitarioPassado) {
+		setNomeProduto(nomePassado);
+		setValorUnitario(valorUnitarioPassado);
+	}
+	
 	public String getNomeProduto() {
 		return nomeProduto;
 	}
