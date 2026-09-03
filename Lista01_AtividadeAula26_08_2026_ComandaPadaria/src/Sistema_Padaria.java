@@ -13,7 +13,6 @@ public class Sistema_Padaria {
 	
 	*/
 	
-	Produto p1 = new Produto();
 	
 	public Sistema_Padaria() {
 		
@@ -22,15 +21,10 @@ public class Sistema_Padaria {
 		
 		float valorFloat = Float.parseFloat(valorEmString);
 		
-		
-		Produto p1 = new Produto();
-		p1.setNomeProduto(nome);
-		p1.setValorUnitario(valorFloat);
+		Produto p1 = new Produto(nome, valorFloat);
 		
 		
-		Produto p2 = new Produto();
-		p2.setNomeProduto("Leite");
-		p2.setValorUnitario(4);
+		Produto p2 = new Produto("Leite", 4);
 		
 		
 		Item_Comanda item1 = new Item_Comanda();

@@ -65,6 +65,24 @@ public class Comanda {
 				dadosDaComanda = dadosDaComanda + " itens";
 			}
 		}
+		
+		/*
+		 
+		  Outra opção de FOR:
+		 
+		for (Item_Comanda item : itens) {
+			dadosDaComanda = dadosDaComanda + "\n"  + item.getProdutoNaComanda().getNomeProduto() + " Valor: R$" 
+					+ item.getProdutoNaComanda().getValorUnitario() + " - " + item.getQuantidadeDoProduto();
+						
+						if (item.getQuantidadeDoProduto() == 1) {
+							dadosDaComanda = dadosDaComanda + " item";
+						} else {
+							dadosDaComanda = dadosDaComanda + " itens";
+						}
+		}
+		
+		*/
+		
 		return dadosDaComanda;
 	}
 	
