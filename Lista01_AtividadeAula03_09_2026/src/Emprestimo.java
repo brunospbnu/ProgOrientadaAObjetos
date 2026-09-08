@@ -31,7 +31,7 @@ public class Emprestimo {
 	
 	public void setClienteDoEmprestimo(Cliente clienteDoEmprestimo) {
 		if (clienteDoEmprestimo == null) {
-			JOptionPane.showMessageDialog(null, "ERRO no programa - A lista de livros não pode ser nula !");
+			JOptionPane.showMessageDialog(null, "ERRO no programa - A lista de clientes não pode ser nula !");
 		} else {
 			this.clienteDoEmprestimo = clienteDoEmprestimo;
 		}
@@ -66,10 +66,12 @@ public class Emprestimo {
 	}
 	
 	public String imprimirDados() {
-		String dados = dataEmprestimo.toString() + "\n";
-		dados += clienteDoEmprestimo.imprimirDados() + "\n";
+		String dados = " ------------- \n Data do empréstimo: " + dataEmprestimo.toString() + "\n";
+		dados += "Cliente do empréstimo: " +clienteDoEmprestimo.imprimirDados();
+		int contalivros = 1;
 		for (Livro livro: LivrosDoEmprestimo) {
-			dados += livro.imprimirDados();
+			dados += contalivros + "º)" +livro.imprimirDados();
+			contalivros++;
 		}
 		return dados;
 	}
