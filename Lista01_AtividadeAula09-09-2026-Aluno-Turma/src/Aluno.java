@@ -34,8 +34,6 @@ public class Aluno {
 	*/
 	public void setNomeAluno(String nomeInformado) throws IllegalArgumentException {
 		if (nomeInformado.isBlank()|| nomeInformado.length() <= 3) {
-			
-			
 			throw new IllegalArgumentException("O nome não pode estar vazio e deve conter mais de 3 letras !!!");
 		} else {
 			nomeAluno = nomeInformado;

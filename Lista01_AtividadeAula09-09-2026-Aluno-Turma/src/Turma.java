@@ -62,11 +62,29 @@ public class Turma {
 	}
 	
 	public Aluno retornarAlunoComMaiorMedia() {
-		//TODO fazer esse metodo.
+		Aluno alunoComMaiorMedia = null;
+		for (int i = 0; i < listaDeAlunos.size(); i++) {
+			if (i == 0) {
+				alunoComMaiorMedia = listaDeAlunos.get(i);
+			}
+			else if (listaDeAlunos.get(i).calcularERetornarMediaAluno() > listaDeAlunos.get(i-1).calcularERetornarMediaAluno()) {
+				alunoComMaiorMedia = listaDeAlunos.get(i);
+			}
+		}
+		return alunoComMaiorMedia;
+		
+		
 	}
 	
 	public int calcularQuantAlunosMedia07OuMais() {
-		//TODO fazer esse metodo.
+		int quantAlunosMedia07OuMais = 0;
+		for (int i = 0; i < listaDeAlunos.size(); i++) {
+			if (listaDeAlunos.get(i).calcularERetornarMediaAluno() >= 7.0) {
+				quantAlunosMedia07OuMais++;
+			}
+		}
+		return quantAlunosMedia07OuMais;
+		
 	}
 	
 	public Aluno retornarAlunoEspecificoBuscadoPeloNome(String alunoBuscado) {
@@ -91,13 +109,34 @@ public class Turma {
 		}
 	}
 	
-	public void excluirAluno() {
-		//TODO fazer esse metodo.
+	public void excluirAluno(Aluno alunoInformado) throws IllegalArgumentException{
+		if (alunoInformado == null) {
+			throw new IllegalArgumentException ("O aluno deve ser informado !");
+		}
+		else {
+			listaDeAlunos.remove(alunoInformado);
+		}
 	}
 	
-	public void alteraInfoTurma() {
-		//TODO fazer esse metodo.
+	public void alteraDadosAluno(String nomeAntigo, String novoNome, List<Float> novasnotas) throws IllegalArgumentException{
+		Aluno alunoSelecionado = retornarAlunoEspecificoBuscadoPeloNome(nomeAntigo);
+		if (novoNome == null || novoNome.isBlank() || novoNome.length() <= 3) {
+			throw new IllegalArgumentException("O nome não pode estar vazio e deve conter mais de 3 letras !!!");
+		} 
+		else if (!novoNome.equalsIgnoreCase(nomeAntigo)) {
+			throw new IllegalArgumentException(" O nome procurado não foi encontrado - nenhuma alteração foi realizada !!!");
+		}
+		else {
+			alunoSelecionado.setNomeAluno(novoNome);
+
+		}
+		if (novasnotas == null) {
+			throw new IllegalArgumentException("As notas não podem estar vazias !!!");
+		} else {
+			alunoSelecionado.setNotasAluno(novasnotas);
+		}
 		
+	
 	}
 	
 }
