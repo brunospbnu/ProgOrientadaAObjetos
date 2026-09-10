@@ -68,14 +68,30 @@ public class Aluno {
 		
 	}
 	
-	public float getNotaEspecificaAluno(int posicaoNaLista) {
+	public void removeNotaAluno(int posicaoNaLista) throws IllegalArgumentException {
+		if (posicaoNaLista < 0 || posicaoNaLista > notasAluno.size()) {
+			throw new IllegalArgumentException("A posição informada é inválida !!!");
+		}
+		notasAluno.remove(posicaoNaLista);
+		quantNotasCadastradas--;
+	}
+	
+	public float retornaNotaEspecificaAluno(int posicaoNaLista) {
 		return notasAluno.get(posicaoNaLista);
+	}
+	
+	public String retornaStringComNotasDoAluno() {
+		String listaDeNotasemString = "Notas:\n";
+		for (int j = 0; j < notasAluno.size(); j++) {
+			listaDeNotasemString += (j+1) + "ª Nota = " + notasAluno.get(j) + "\n";
+		}
+		return listaDeNotasemString;
 	}
 	
 	public float calcularERetornarMediaAluno() {
 		float soma = 0;
 		for (int i = 0; i < notasAluno.size(); i++) {
-			soma = soma + getNotaEspecificaAluno(i);
+			soma = soma + retornaNotaEspecificaAluno(i);
 		}
 		float media = soma / quantDeNotasParaCadaEstudante;
 		return media;

@@ -40,12 +40,19 @@ public class Turma {
 	}
 	
 	public String retornarStringListaDeAlunos() {
-		String listaDeAlunosEmString = "Lista de Alunos\n";
+		String listaDeAlunosEmString = "Lista de Alunos: \n";
+		if (listaDeAlunos.isEmpty()) {
+			listaDeAlunosEmString += "A lista está vazia !!!\n ";
+		}
 		for (int i = 0; i < listaDeAlunos.size(); i++) {
-			listaDeAlunosEmString += (i+1) + ") Nome" + listaDeAlunos.get(i).getNomeAluno() + "\n  ";
-			for (int j = 0; j < listaDeAlunos.get(i).getNotasAluno().size(); j++) {
-				listaDeAlunosEmString =+ (j+1) + "ª Nota = " + listaDeAlunos.get(i).getNotasAluno().get(j) + "\n  ";
+			listaDeAlunosEmString += (i+1) + ") Nome: " + listaDeAlunos.get(i).getNomeAluno() + "\n  ";
+			if (listaDeAlunos.get(i).getNotasAluno().isEmpty()) {
+				listaDeAlunosEmString += "Aluno sem notas cadastradas.\n ";
 			}
+			for (int j = 0; j < listaDeAlunos.get(i).getNotasAluno().size(); j++) {
+				listaDeAlunosEmString += "\n" +(j+1) + "ª Nota = " + listaDeAlunos.get(i).getNotasAluno().get(j);
+			}
+			listaDeAlunosEmString += "\n \n ";
 			}
 		listaDeAlunosEmString += "Fim da lista !!!";
 		return listaDeAlunosEmString;

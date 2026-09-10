@@ -32,9 +32,9 @@ public class Sistema {
 		String textoMenu = "MENU PRINCIPAL - Escolha uma Opção:\n \n" +
 							" 1  - TURMA: Definir / Alterar o nome da turma\n" +
 							" 2  - TURMA: Consultar o nome da turma\n\n" +
-							" 3  - ALUNO: Adicionar aluno no cadastro\n" +
+							" 3  - ALUNO: Adicionar aluno na turma\n" +
 							" 4  - ALUNO: Listar alunos e suas notas\n" +
-							" 5  - ALUNO: Excluir aluno do cadastro, bem como suas notas\n" +
+							" 5  - ALUNO: Excluir aluno da turma, bem como suas notas\n" +
 							" 6  - ALUNO / NOTAS: Alterar dados completos de um aluno, incluindo notas\n\n" +
 							" 7  - MÉDIA: Exibir aluno com maior média\n" +
 							" 8  - MÉDIA: Exibir a quantidade de alunos com média igual ou superior à 7,0\n" +
@@ -109,21 +109,44 @@ public class Sistema {
 	
 	
 	private void removerNotaAluno() {
-		// TODO Auto-generated method stub
+		String alunoAExcluirNotaString = JOptionPane.showInputDialog("Escolha o aluno para remover a nota, pelo número: \n" + turmaDaEscola.retornarStringListaDeAlunos());
+		try {
+			int alunoARemoverNotaEmInt = Integer.parseInt(alunoAExcluirNotaString);
+			Aluno alunoARemoverNota = turmaDaEscola.getListaDeAlunos().get(alunoARemoverNotaEmInt-1);
+			String notaAExcluiremString = JOptionPane.showInputDialog("Esconha a nota para exccluir, pelo número: " + alunoARemoverNota.retornaStringComNotasDoAluno());
+			int notaAExcluirEmInt = Integer.parseInt(notaAExcluiremString);
+			turmaDaEscola.getListaDeAlunos().get(alunoARemoverNotaEmInt-1).removeNotaAluno(notaAExcluirEmInt-1);
+			
+			
+			JOptionPane.showMessageDialog(null, "Nota removida com sucesso !!! ");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 		
 	}
 
 
 
 	private void adicionarNotaAluno() {
-		// TODO Auto-generated method stub
+		String alunoAAdicionarNotaString = JOptionPane.showInputDialog("Escolha o aluno para adicionar a nota, pelo número: \n" + turmaDaEscola.retornarStringListaDeAlunos());
+		try {
+			int alunoAAdicionarNotaEmInt = Integer.parseInt(alunoAAdicionarNotaString);
+			Aluno alunoAAdicionarNota = turmaDaEscola.getListaDeAlunos().get(alunoAAdicionarNotaEmInt-1);
+			String notaAAdionarString = JOptionPane.showInputDialog("Informe a nota a adicionar: ");
+			float notaAAdicionar = Float.parseFloat(notaAAdionarString);
+			alunoAAdicionarNota.addNotaAluno(notaAAdicionar);
+			JOptionPane.showMessageDialog(null, "Nota adicionada com sucesso !!! ");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 		
 	}
 
 
 
 	private void exibirMediaDaTurma() {
-		// TODO Auto-generated method stub
+		float mediaDaTurma = turmaDaEscola.calcularERetornarMediaTurma();
+		JOptionPane.showMessageDialog(null, "A média da tumra é: " + mediaDaTurma);
 		
 	}
 
@@ -146,40 +169,67 @@ public class Sistema {
 	private void alterarDadosCompletosAluno() {
 		// TODO Auto-generated method stub
 		
+		
+		
+		
 	}
 
 
 
 	private void excluirAluno() {
-		// TODO Auto-generated method stub
+		String alunoAAxcluirString = JOptionPane.showInputDialog("Informe o aluno para excluir, pelo número: \n" + turmaDaEscola.retornarStringListaDeAlunos());
+		try {
+			int alunoAExcluirEmInt = Integer.parseInt(alunoAAxcluirString);
+			Aluno alunoAExcluir = turmaDaEscola.getListaDeAlunos().get(alunoAExcluirEmInt-1);
+			turmaDaEscola.excluirAluno(alunoAExcluir);
+			JOptionPane.showMessageDialog(null, "Aluno excluído com sucesso !!! ");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "O valor digitado é invalido ou não é um número !!!");
+		}
+		
 		
 	}
 
 
 
 	private void listarAlunos() {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, turmaDaEscola.retornarStringListaDeAlunos());
 	}
 
 
 
 	private void adicionarAluno() {
-		// TODO Auto-generated method stub
+		String nomeInformado = JOptionPane.showInputDialog("Adicionando estudante: \n Informe o nome do estudante: \n");
+		try {
+			Aluno alunoAAdicionar = null;
+			alunoAAdicionar = new Aluno(nomeInformado);
+			turmaDaEscola.addAluno(alunoAAdicionar);
+			JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso !!!");
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
 		
 	}
 
 
 
 	private void consultarNomeTurma() {
-		// TODO Auto-generated method stub
-		
+		String nomeConsultado = turmaDaEscola.getNomeTurma();
+		JOptionPane.showMessageDialog(null, "O nome da turma é: " + nomeConsultado);
 	}
 
 
 
 	private void definirNomeTurma() {
-		// TODO Auto-generated method stub
+		try {
+			String nomeInformado = JOptionPane.showInputDialog("Informe o nome da Turma: " );
+			turmaDaEscola.setNomeTurma(nomeInformado);
+		} 
+		catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
 		
 	}
 
