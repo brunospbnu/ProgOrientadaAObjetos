@@ -68,6 +68,20 @@ public class Aluno {
 		
 	}
 	
+	public void alteraNotaAluno(int posicaoDaNota, float notaInformada) throws IllegalArgumentException {
+		if (notaInformada < 0 || notaInformada > 10) {
+			throw new IllegalArgumentException ("A nota não pode ser menor que 0 e nem maior que 10 !!!");
+		} 
+		
+		else {
+			notasAluno.remove(posicaoDaNota);
+			quantNotasCadastradas--;
+			notasAluno.add(posicaoDaNota, notaInformada);
+			quantNotasCadastradas++;
+		}
+		
+	}
+	
 	public void removeNotaAluno(int posicaoNaLista) throws IllegalArgumentException {
 		if (posicaoNaLista < 0 || posicaoNaLista > notasAluno.size()) {
 			throw new IllegalArgumentException("A posição informada é inválida !!!");

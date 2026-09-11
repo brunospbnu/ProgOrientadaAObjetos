@@ -35,7 +35,7 @@ public class Sistema {
 							" 3  - ALUNO: Adicionar aluno na turma\n" +
 							" 4  - ALUNO: Listar alunos e suas notas\n" +
 							" 5  - ALUNO: Excluir aluno da turma, bem como suas notas\n" +
-							" 6  - ALUNO / NOTAS: Alterar dados completos de um aluno, incluindo notas\n\n" +
+							" 6  - ALUNO / NOTA: Alterar dados de um aluno, incluindo uma nota\n\n" +
 							" 7  - MÉDIA: Exibir aluno com maior média\n" +
 							" 8  - MÉDIA: Exibir a quantidade de alunos com média igual ou superior à 7,0\n" +
 							" 9  - MÉDIA: Exibir a Média da Turma\n\n" +
@@ -153,22 +153,40 @@ public class Sistema {
 
 
 	private void exibirQuantAlunosMedia07OuMais() {
-		// TODO Auto-generated method stub
+		int quantAlunosMedia07OuMais = turmaDaEscola.calcularQuantAlunosMedia07OuMais();
+		JOptionPane.showMessageDialog(null, "A quantidade de alunos com média maior que 7 é: \n " + quantAlunosMedia07OuMais);
 		
 	}
 
 
 
 	private void exibirAlunoMaiorMedia() {
-		// TODO Auto-generated method stub
+		try {
+			Aluno alunoComMaiorMedia = turmaDaEscola.retornarAlunoComMaiorMedia();
+			JOptionPane.showMessageDialog(null, "O Aluno com maior média é: \n "+alunoComMaiorMedia.getNomeAluno());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 		
 	}
 
 
 
 	private void alterarDadosCompletosAluno() {
-		// TODO Auto-generated method stub
-		
+		try {
+			String nomeDoAlunoAAlterar = JOptionPane.showInputDialog("Informe o nome do aluno a ser alterado: \n");
+			Aluno alunoAAlterar = turmaDaEscola.retornarAlunoEspecificoBuscadoPeloNome(nomeDoAlunoAAlterar);
+			String novoNome = JOptionPane.showInputDialog("Informe o novo nome: \n");
+			String posicaoNotaAAlterarString = JOptionPane.showInputDialog("Informe a posição da nota a alterar, pelo número: \n" + alunoAAlterar.retornaStringComNotasDoAluno());
+			int posicaoNotaAAAlterar = Integer.parseInt(posicaoNotaAAlterarString);
+			String novaNotaEmString = JOptionPane.showInputDialog("Informe a nova nota: \n ");
+			float novaNota = Float.parseFloat(novaNotaEmString);
+			turmaDaEscola.alteraDadosAluno(nomeDoAlunoAAlterar, novoNome,posicaoNotaAAAlterar-1,novaNota);
+			JOptionPane.showMessageDialog(null, "Nota adicionada com sucesso !!! ");
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 		
 		
 		

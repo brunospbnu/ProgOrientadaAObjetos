@@ -69,15 +69,34 @@ public class Turma {
 	}
 	
 	public Aluno retornarAlunoComMaiorMedia() {
-		Aluno alunoComMaiorMedia = null;
-		for (int i = 0; i < listaDeAlunos.size(); i++) {
-			if (i == 0) {
-				alunoComMaiorMedia = listaDeAlunos.get(i);
-			}
-			else if (listaDeAlunos.get(i).calcularERetornarMediaAluno() > listaDeAlunos.get(i-1).calcularERetornarMediaAluno()) {
-				alunoComMaiorMedia = listaDeAlunos.get(i);
-			}
+		
+		
+		if (listaDeAlunos == null || listaDeAlunos.isEmpty()) {
+			throw new IllegalArgumentException("Não há alunos cadastrados !!!");
 		}
+		if (listaDeAlunos.size() < 2) {
+			throw new IllegalArgumentException("Somente há um aluno cadastrado - Não é possível comparar!!!");
+		}
+		
+		Aluno alunoComMaiorMedia = listaDeAlunos.get(0);
+		boolean houveEmpateNoTopo = false;
+		
+		for (int i = 1; i < listaDeAlunos.size(); i++) {
+			Aluno alunoAtual = listaDeAlunos.get(i);
+			double mediaAtual = alunoAtual.calcularERetornarMediaAluno();
+	        double maiorMediaAteAgora = alunoComMaiorMedia.calcularERetornarMediaAluno();
+	        
+			if (mediaAtual > maiorMediaAteAgora) {
+				alunoComMaiorMedia = alunoAtual;
+	            houveEmpateNoTopo = false;
+			}
+			else if (mediaAtual == maiorMediaAteAgora) {
+	            houveEmpateNoTopo = true;
+	        }
+		}
+		if (houveEmpateNoTopo) {
+	        throw new IllegalArgumentException("Há alunos empatados com a maior média. Confira a lista!");
+	    }
 		return alunoComMaiorMedia;
 		
 		
@@ -94,13 +113,16 @@ public class Turma {
 		
 	}
 	
-	public Aluno retornarAlunoEspecificoBuscadoPeloNome(String alunoBuscado) {
+	public Aluno retornarAlunoEspecificoBuscadoPeloNome(String alunoBuscado) throws IllegalArgumentException{
 		if (alunoBuscado!= null) {
 			for (int i = 0; i < listaDeAlunos.size(); i++) {
 				if (listaDeAlunos.get(i).getNomeAluno().equalsIgnoreCase(alunoBuscado)) {
 					return listaDeAlunos.get(i);
 				}
 			}
+		}
+		else {
+			throw new IllegalArgumentException("O nome do aluno a ser alterado não pode estar vazio");
 		}
 		return null;
 		
@@ -125,22 +147,18 @@ public class Turma {
 		}
 	}
 	
-	public void alteraDadosAluno(String nomeAntigo, String novoNome, List<Float> novasnotas) throws IllegalArgumentException{
+	public void alteraDadosAluno(String nomeAntigo, String novoNome, int posicaoNotaAAlterar, float novoValor) throws IllegalArgumentException{
 		Aluno alunoSelecionado = retornarAlunoEspecificoBuscadoPeloNome(nomeAntigo);
 		if (novoNome == null || novoNome.isBlank() || novoNome.length() <= 3) {
 			throw new IllegalArgumentException("O nome não pode estar vazio e deve conter mais de 3 letras !!!");
 		} 
-		else if (!novoNome.equalsIgnoreCase(nomeAntigo)) {
-			throw new IllegalArgumentException(" O nome procurado não foi encontrado - nenhuma alteração foi realizada !!!");
-		}
 		else {
 			alunoSelecionado.setNomeAluno(novoNome);
-
 		}
-		if (novasnotas == null) {
-			throw new IllegalArgumentException("As notas não podem estar vazias !!!");
+		if (posicaoNotaAAlterar < 1 || posicaoNotaAAlterar > alunoSelecionado.getNotasAluno().size()) {
+			throw new IllegalArgumentException("A posição da nota deve ser maior que 1 e não pode ser maior que a quantidade de notas");
 		} else {
-			alunoSelecionado.setNotasAluno(novasnotas);
+			alunoSelecionado.alteraNotaAluno(posicaoNotaAAlterar, novoValor);
 		}
 		
 	
