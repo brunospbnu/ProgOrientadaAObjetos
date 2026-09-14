@@ -51,7 +51,7 @@ public class Sistema {
 		
 		do {
 			
-			opcaoEmString = JOptionPane.showInputDialog(textoMenu);
+			opcaoEmString = JOptionPane.showInputDialog("Nome da turma: " + turmaDaEscola.getNomeTurma() + "\n\n" + textoMenu);
 			
 			try {
 				opcao = Integer.parseInt(opcaoEmString);
@@ -146,7 +146,7 @@ public class Sistema {
 
 	private void exibirMediaDaTurma() {
 		float mediaDaTurma = turmaDaEscola.calcularERetornarMediaTurma();
-		JOptionPane.showMessageDialog(null, "A média da tumra é: " + mediaDaTurma);
+		JOptionPane.showMessageDialog(null, "A média da turma é: " + mediaDaTurma);
 		
 	}
 
@@ -182,7 +182,7 @@ public class Sistema {
 			String novaNotaEmString = JOptionPane.showInputDialog("Informe a nova nota: \n ");
 			float novaNota = Float.parseFloat(novaNotaEmString);
 			turmaDaEscola.alteraDadosAluno(nomeDoAlunoAAlterar, novoNome,posicaoNotaAAAlterar-1,novaNota);
-			JOptionPane.showMessageDialog(null, "Nota adicionada com sucesso !!! ");
+			JOptionPane.showMessageDialog(null, "Nota alterada com sucesso !!! ");
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());

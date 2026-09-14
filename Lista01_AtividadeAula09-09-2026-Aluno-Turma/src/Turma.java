@@ -52,6 +52,7 @@ public class Turma {
 			for (int j = 0; j < listaDeAlunos.get(i).getNotasAluno().size(); j++) {
 				listaDeAlunosEmString += "\n" +(j+1) + "ª Nota = " + listaDeAlunos.get(i).getNotasAluno().get(j);
 			}
+			listaDeAlunosEmString += "\n Média do aluno: " + listaDeAlunos.get(i).calcularERetornarMediaAluno();
 			listaDeAlunosEmString += "\n \n ";
 			}
 		listaDeAlunosEmString += "Fim da lista !!!";
