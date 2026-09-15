@@ -35,7 +35,7 @@ public class Dono {
 			throw new Exception("ERRO: Informe somente números para o telefone, não utilize parenteses e nenhum tipo de traço");
 		}
 		if (telefoneInformado.length() != 10) {
-			throw new Exception("ERRO: Telefone inválido: O telefone deve conter exatamente 10 números (somente números) !!!");
+			throw new Exception("ERRO: Telefone inválido: O telefone deve conter exatamente 10 números (somente números) sendo os 2 primeiros o DDD do estado !!!");
 		}
 		telefone = telefoneInformado;
 	}
