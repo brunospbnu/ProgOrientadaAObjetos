@@ -8,6 +8,7 @@ public class Animal {
 	private String especie;
 	private Dono donoDoAnimal;
 	private List<Float> pesos;
+	private int quantMaxPesosPorAnimal = 3;
 	
 	public Animal(String nomeInformado, String especieInformada, Dono donoInformado) throws Exception {
 		setNome(nomeInformado);
@@ -61,5 +62,29 @@ public class Animal {
 		pesos = pesosInformados;
 	}
 	
+	public void addPeso (float pesoInformado) throws Exception {
+		if (pesoInformado < 0) {
+			throw new Exception("ERRO: O peso não pode ser menor que zero !!!");
+		}
+		if (pesos.size() == quantMaxPesosPorAnimal) {
+			throw new Exception("ERRO: Quantidade Máxima de pesos já adicionada - Não é possível adicionar mais !!!");
+		}
+		pesos.add(pesoInformado);
+	}
 	
+	public void removePeso (int posicaoNaLista) throws Exception {
+		if (posicaoNaLista < 1 || posicaoNaLista > pesos.size()) {
+			throw new Exception("ERRO: A posição escolhida deve estar na lista !!!");
+		}
+		pesos.remove(posicaoNaLista);
+	}
+	
+	public float calculaMediaPesoAnimal () {
+		float somaDosPesos = 0;
+		for (int i = 0; i < pesos.size(); i++) {
+			somaDosPesos += pesos.get(i);
+		}
+		float media = somaDosPesos / quantMaxPesosPorAnimal;
+		return media;
+	}
 }
