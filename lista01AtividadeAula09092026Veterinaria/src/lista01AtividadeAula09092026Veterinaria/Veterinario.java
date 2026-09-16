@@ -42,16 +42,20 @@ public class Veterinario {
 		animaisVeterinario.add(animalInformado);
 	}
 	
-	public Animal buscarAnimal(String nomeInformado) throws Exception {
+	public Animal buscarAnimal(String nomeInformado) throws Exception  {
+		Animal animalARetornar = null;
 		if (nomeInformado == null || nomeInformado.isBlank()) {
 			throw new Exception("O nome buscado não pode estar vazio !!!");
 		}
 		for (int i = 0; i < animaisVeterinario.size(); i++) {
-			if (nomeInformado == animaisVeterinario.get(i).getNome()) {
-				return animaisVeterinario.get(i);
+			if (nomeInformado.equalsIgnoreCase(animaisVeterinario.get(i).getNome())) {
+				animalARetornar = animaisVeterinario.get(i);
 			}
 		}
-		throw new Exception ("Não foram encontrados animais com esse nome !!! ");
+		if (animalARetornar == null) {
+			throw new Exception("Não há animal com o nome informado !!!");
+		}
+		return animalARetornar;
 	}
 	
 	public void alteraAnimal(String nomeBuscado, String novoNome, String especieNova, List<Float> novosPesos) throws Exception {
@@ -89,7 +93,7 @@ public class Veterinario {
 	}
 	
 	public String buscarDadosContatoDonoPeloNomeAnimal(String nomeAnimalInformado) {
-		String dadosContatoDoDono = "Busca realizada - Dados encontrados para o animal" + nomeAnimalInformado + ": \n";
+		String dadosContatoDoDono = "Busca realizada - Dados encontrados para o animal " + nomeAnimalInformado + ": \n";
 		for (int i = 0; i < animaisVeterinario.size(); i++) {
 			if (nomeAnimalInformado.equalsIgnoreCase(animaisVeterinario.get(i).getNome())) {
 				dadosContatoDoDono += "Nome do dono: " + animaisVeterinario.get(i).getDonoDoAnimal().getNome() + "- Telefone: " + animaisVeterinario.get(i).getDonoDoAnimal().getTelefone();

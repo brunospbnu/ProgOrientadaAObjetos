@@ -158,7 +158,7 @@ public class Sistema {
 		try {
 			String animalEscolhidoString = JOptionPane.showInputDialog("Digite o nome do animal para alterar: ");
 			Animal animalEncontrado = veterinario.buscarAnimal(animalEscolhidoString);
-			String novoNome = JOptionPane.showInputDialog("Animal " + animalEncontrado.getNome() + "encontrado. \n Informe o novo nome para esse animal: ");
+			String novoNome = JOptionPane.showInputDialog("Animal " + animalEncontrado.getNome() + " encontrado. \n Informe o novo nome para esse animal: ");
 			String novaEspecie = JOptionPane.showInputDialog("Informe a nova espécie: ");
 			List<Float> novosPesos = new ArrayList<Float>();
 			int adicionarMais = 1;
@@ -177,6 +177,7 @@ public class Sistema {
 			
 			veterinario.alteraAnimal(animalEncontrado.getNome(), novoNome, novaEspecie, novosPesos);
 			
+			JOptionPane.showMessageDialog(null, "Alteração realizada com sucesso !!!");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
@@ -273,7 +274,7 @@ public class Sistema {
 	
 	public void buscarAnimalMaiorMedia () {
 		try {
-			JOptionPane.showMessageDialog(null, "O animal com maior média é: " + veterinario.retornaAnimalMaiorMedia());
+			JOptionPane.showMessageDialog(null, veterinario.retornaAnimalMaiorMedia());
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
