@@ -10,10 +10,9 @@ public class Animal {
 	private List<Float> pesos;
 	private int quantMaxPesosPorAnimal = 3;
 	
-	public Animal(String nomeInformado, String especieInformada, Dono donoInformado) throws Exception {
+	public Animal(String nomeInformado, String especieInformada) throws Exception {
 		setNome(nomeInformado);
 		setEspecie(especieInformada);
-		setDonoDoAnimal(donoInformado);
 		pesos = new ArrayList<Float>(); 
 		
 	}
@@ -56,8 +55,8 @@ public class Animal {
 	}
 
 	public void setPesos(List<Float> pesosInformados) throws Exception {
-		if (pesosInformados == null || pesosInformados.size() != pesos.size()) {
-			throw new Exception("ERRO: A lista de pesos não pode ser nula e deve ser do mesmo tamanho que a lista cadastrada!!!");
+		if (pesosInformados == null || pesosInformados.size() > quantMaxPesosPorAnimal) {
+			throw new Exception("ERRO: A lista de pesos não pode ser nula e deve ter no maximo" + quantMaxPesosPorAnimal + " pesos !!!");
 		}
 		pesos = pesosInformados;
 	}
@@ -77,6 +76,16 @@ public class Animal {
 			throw new Exception("ERRO: A posição escolhida deve estar na lista !!!");
 		}
 		pesos.remove(posicaoNaLista);
+	}
+	
+	public String listarPesos() {
+		String listaPesos = "\n Pesos: \n";
+		for (int i = 0; i < pesos.size(); i++) {
+			listaPesos += (i+1) + "º) " + pesos.get(i) + "\n";
+		}
+		listaPesos += "\n";
+		
+		return listaPesos;
 	}
 	
 	public float calculaMediaPesoAnimal () {

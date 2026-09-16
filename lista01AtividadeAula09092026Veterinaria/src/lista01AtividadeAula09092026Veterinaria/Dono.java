@@ -31,8 +31,8 @@ public class Dono {
 		if (!telefoneInformado.matches("^[0-9]+$")) {
 			throw new Exception("ERRO: Informe somente números para o telefone, não utilize parenteses e nenhum tipo de traço");
 		}
-		if (telefoneInformado.length() != 10) {
-			throw new Exception("ERRO: Telefone inválido: O telefone deve conter exatamente 10 números (somente números) sendo os 2 primeiros o DDD do estado !!!");
+		if (telefoneInformado.length() != 11) {
+			throw new Exception("ERRO: Telefone inválido: O telefone deve conter exatamente 11 números (somente números) sendo os 2 primeiros o DDD do estado !!!");
 		}
 		telefone = telefoneInformado;
 	}

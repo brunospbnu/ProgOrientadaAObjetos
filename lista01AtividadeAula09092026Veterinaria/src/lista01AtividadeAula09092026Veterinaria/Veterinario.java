@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Veterinario {
-	String nome;
-	List<Animal> animaisVeterinario;
+	private String nome;
+	private List<Animal> animaisVeterinario;
 	
 	public Veterinario(String nomeInformado) throws Exception {
 	setNome(nomeInformado);
@@ -70,18 +70,18 @@ public class Veterinario {
 	}
 	
 	public String listarTodosAnimais() {
-		String listaAnimais = "\n \n Lista completa de animais: \n\n";
+		String listaAnimais = "\n Lista completa de animais: \n\n";
 		for (int i = 0; i < animaisVeterinario.size(); i++) {
-			listaAnimais += (i+1) + "º) " + animaisVeterinario.get(i).getNome() + " - Dono: " + animaisVeterinario.get(i).getDonoDoAnimal().getNome() + "\n";
+			listaAnimais += (i+1) + "º) " + animaisVeterinario.get(i).getNome() + " - Dono: " + animaisVeterinario.get(i).getDonoDoAnimal().getNome() + "\n" + animaisVeterinario.get(i).listarPesos();
 		}
 		return listaAnimais;
 	}
 	
 	public String listarAnimaisDono(String nomeDonoInformado) {
-		String listaDeAnimaisDono = "\n\n Lista de animais do dono" + nomeDonoInformado + " :\n\n";
+		String listaDeAnimaisDono = "\n\n Lista de animais do dono: " + nomeDonoInformado + " :\n\n";
 		for (int i = 0; i < animaisVeterinario.size(); i++) {
 			if (nomeDonoInformado.equalsIgnoreCase(animaisVeterinario.get(i).getDonoDoAnimal().getNome())) {
-				listaDeAnimaisDono += animaisVeterinario.get(i).getNome();
+				listaDeAnimaisDono += animaisVeterinario.get(i).getNome() + ", ";
 			}
 		}
 		return listaDeAnimaisDono;
@@ -92,7 +92,7 @@ public class Veterinario {
 		String dadosContatoDoDono = "Busca realizada - Dados encontrados para o animal" + nomeAnimalInformado + ": \n";
 		for (int i = 0; i < animaisVeterinario.size(); i++) {
 			if (nomeAnimalInformado.equalsIgnoreCase(animaisVeterinario.get(i).getNome())) {
-				dadosContatoDoDono += "Nome do dono: " + animaisVeterinario.get(i).getDonoDoAnimal().getNome() + "- Telefone: " + animaisVeterinario.get(i).getDonoDoAnimal().getNome();
+				dadosContatoDoDono += "Nome do dono: " + animaisVeterinario.get(i).getDonoDoAnimal().getNome() + "- Telefone: " + animaisVeterinario.get(i).getDonoDoAnimal().getTelefone();
 			}
 		}
 		return dadosContatoDoDono;
@@ -104,7 +104,7 @@ public class Veterinario {
 		for (int i = 0; i < animaisVeterinario.size(); i++) {
 			somaDasMediasAnimais += animaisVeterinario.get(i).calculaMediaPesoAnimal();
 		}
-		mediaGeral = somaDasMediasAnimais / (float) animaisVeterinario.size();
+		mediaGeral = somaDasMediasAnimais / animaisVeterinario.size();
 		return mediaGeral;
 	}
 	
