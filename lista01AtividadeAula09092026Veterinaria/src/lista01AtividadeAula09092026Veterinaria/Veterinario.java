@@ -54,8 +54,12 @@ public class Veterinario {
 		throw new Exception ("Não foram encontrados animais com esse nome !!! ");
 	}
 	
-	public void alteraAnimal(String nomeInformado, String novoNome) {
-		//TODO
+	public void alteraAnimal(String nomeBuscado, String novoNome, String especieNova, List<Float> novosPesos) throws Exception {
+		Animal animalEncontrado = buscarAnimal(nomeBuscado);
+		animalEncontrado.setNome(novoNome);
+		animalEncontrado.setEspecie(especieNova);
+		animalEncontrado.setPesos(novosPesos);
+
 	}
 	
 	public void excluiAnimal(Animal animalInformado) throws Exception {
@@ -95,14 +99,18 @@ public class Veterinario {
 	}
 	
 	public float calculaMediaGeralPesosAnimais() {
-		float mediageral = 0;
-		//TODO
-		return mediageral;
+		float somaDasMediasAnimais = 0;
+		float mediaGeral = 0;
+		for (int i = 0; i < animaisVeterinario.size(); i++) {
+			somaDasMediasAnimais += animaisVeterinario.get(i).calculaMediaPesoAnimal();
+		}
+		mediaGeral = somaDasMediasAnimais / (float) animaisVeterinario.size();
+		return mediaGeral;
 	}
 	
 	public String retornaAnimalMaiorMedia() throws Exception {
 		if (animaisVeterinario.size() == 1) {
-			throw new Exception ("Há somente 1 animal cadastrado - Não é possível comparar !!!");
+			throw new Exception ("ERRO: Há somente 1 animal cadastrado - Não é possível comparar !!!");
 		}
 		String animalMaiorMediaDados = "O animal com maior média é: ";
 		Animal animalMaiorMedia = animaisVeterinario.get(0);
@@ -118,22 +126,39 @@ public class Veterinario {
 			
 		}
 		if (empate == true) {
-			throw new Exception("Há animais empatados, consulte a lista !!!");
+			throw new Exception("ERRO: Há animais empatados, consulte a lista !!!");
 		}
 		animalMaiorMediaDados += animalMaiorMedia.getNome();
 		return animalMaiorMediaDados;
 	}
 	
-	public int calculaQuantAnimaisDono() {
+	public int calculaQuantAnimaisDono(String nomeDonoInformado) throws Exception {
 		int quantidadeAnimaisDoDono = 0;
-		//TODO
+		boolean donoValido = false;
+		for (int i = 0; i < animaisVeterinario.size(); i++) {
+			if (nomeDonoInformado.equalsIgnoreCase(animaisVeterinario.get(i).getDonoDoAnimal().getNome())) {
+				donoValido = true;
+				quantidadeAnimaisDoDono++;
+			}
+		}
+		if (!donoValido) {
+			throw new Exception("ERRO: Não há qualquer dono cadastrado com o nome informado");
+		}
+
 		return quantidadeAnimaisDoDono;
 	}
 	
 	
-	public int calculaQuantAnimaisPesoMaiorQueInformado (float pesoInformado) {
+	public int calculaQuantAnimaisPesoMaiorQueInformado (float pesoInformado) throws Exception {
 		int quantidade = 0;
-		//TODO
+		if (pesoInformado < 0) {
+			throw new Exception ("ERRO: O peso informado não pode ser menor que zero !!!");
+		}
+		for (int i = 0; i < animaisVeterinario.size(); i++) {
+			if (animaisVeterinario.get(i).calculaMediaPesoAnimal() > pesoInformado) {
+				quantidade++;
+			}
+		}
 		return quantidade;
 	}
 	

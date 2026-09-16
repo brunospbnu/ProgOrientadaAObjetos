@@ -56,8 +56,8 @@ public class Animal {
 	}
 
 	public void setPesos(List<Float> pesosInformados) throws Exception {
-		if (pesosInformados == null) {
-			throw new Exception("ERRO: A lista de pesos não pode ser nula !!!");
+		if (pesosInformados == null || pesosInformados.size() != pesos.size()) {
+			throw new Exception("ERRO: A lista de pesos não pode ser nula e deve ser do mesmo tamanho que a lista cadastrada!!!");
 		}
 		pesos = pesosInformados;
 	}

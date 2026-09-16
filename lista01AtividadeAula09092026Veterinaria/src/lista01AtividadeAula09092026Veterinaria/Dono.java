@@ -18,9 +18,6 @@ public class Dono {
 			throw new Exception("ERRO: O nome não pode estar vazio e deve ter mais de 3 letras !!!");
 		} 
 		nome = nomeInformado;
-		
-		
-		
 	}
 	
 	public String getTelefone() {
