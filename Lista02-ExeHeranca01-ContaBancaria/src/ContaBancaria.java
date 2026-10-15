@@ -2,7 +2,7 @@
 public class ContaBancaria {
 	private String numero;
 	private double saldo;
-	private Cliente cliente;
+	private Cliente titular;
 	
 	public ContaBancaria(String nmCOntaInformado) {
 		setNumero(nmCOntaInformado);
@@ -17,11 +17,11 @@ public class ContaBancaria {
 	}
 	
 	public Cliente getTitular() {
-		return cliente;
+		return titular;
 	}
 	
 	public void setTitular(Cliente titular) {
-		cliente = titular;
+		this.titular = titular;
 	}
 
 	public double getSaldo() {
