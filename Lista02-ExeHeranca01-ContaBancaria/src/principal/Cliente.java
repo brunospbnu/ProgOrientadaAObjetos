@@ -8,7 +8,7 @@ public class Cliente {
 	
 	public Cliente(String nomeInformado, String endereco) throws CampoVazioException, Maior3CaracteresException {
 		setNome(nomeInformado);
-		setEndereco(nomeInformado);
+		setEndereco(endereco);
 	}
 
 	public String getNome() {
