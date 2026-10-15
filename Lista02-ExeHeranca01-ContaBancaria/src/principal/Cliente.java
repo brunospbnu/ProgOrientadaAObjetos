@@ -1,4 +1,5 @@
-package Principal;
+package principal;
+
 
 public class Cliente {
 	private String nome;

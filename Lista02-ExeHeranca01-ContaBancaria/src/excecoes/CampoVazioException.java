@@ -1,4 +1,4 @@
-package Exceções;
+package excecoes;
 
 public class CampoVazioException extends IllegalArgumentException{
 	

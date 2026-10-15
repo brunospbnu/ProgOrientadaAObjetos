@@ -1,4 +1,4 @@
-package Exceções;
+package excecoes;
 
 public class Maior3CaracteresException extends IllegalArgumentException{
 	
