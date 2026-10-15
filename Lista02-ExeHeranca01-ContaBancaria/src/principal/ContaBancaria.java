@@ -34,10 +34,21 @@ public class ContaBancaria {
 	}
 	
 	public void depositar(double valor) {
+		if (valor <= 0 ) {
+			throw new IllegalArgumentException("Valor deve ser maior que 0");
+		}
 		saldo = saldo + valor;
+		//Poderia ser: 
+		//this.setSaldo(this.getSaldo() +valor);
 	}
 	
 	public void sacar(double valor) {
+		if (valor <= 0 ) {
+			throw new IllegalArgumentException("Valor deve ser maior que 0");
+		}
+		if (valor > saldo) {
+			throw new IllegalArgumentException("Valor deve ser menor que o saldo da conta. Saldo atual R$ " + saldo);
+		}
 		saldo = saldo - valor;
 	}
 	

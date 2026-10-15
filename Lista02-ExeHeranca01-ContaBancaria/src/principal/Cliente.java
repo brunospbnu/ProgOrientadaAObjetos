@@ -1,5 +1,6 @@
 package principal;
 
+import excecoes.*;
 
 public class Cliente {
 	private String nome;
