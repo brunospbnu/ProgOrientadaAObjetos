@@ -1,11 +1,14 @@
 package principal;
 
+import excecoes.CampoVazioException;
+import excecoes.Maior3CaracteresException;
+
 public class ContaBancaria {
 	private String numero;
 	private double saldo;
 	private Cliente titular;
 	
-	public ContaBancaria(String nmCOntaInformado) {
+	public ContaBancaria(String nmCOntaInformado, Cliente titular) throws IllegalArgumentException, CampoVazioException, Maior3CaracteresException{
 		setNumero(nmCOntaInformado);
 	}
 
@@ -14,6 +17,9 @@ public class ContaBancaria {
 	}
 
 	public void setNumero(String numero) {
+		if (numero == null|| numero.isBlank()) {
+			throw new CampoVazioException("Numero da Conta");
+		}
 		this.numero = numero;
 	}
 	
@@ -22,6 +28,9 @@ public class ContaBancaria {
 	}
 	
 	public void setTitular(Cliente titular) {
+		if (titular == null) {
+			throw new CampoVazioException("Titular");
+		}
 		this.titular = titular;
 	}
 
@@ -29,7 +38,17 @@ public class ContaBancaria {
 		return saldo;
 	}
 
+	
+	
+	protected void validarSaldo(double saldo) throws IllegalArgumentException {
+		if (saldo < 0) {
+	        throw new IllegalArgumentException("Saldo informado deve ser positivo");
+	    }
+	}
+	
+	
 	protected void setSaldo(double saldo) {
+		validarSaldo(saldo);
 		this.saldo = saldo;
 	}
 	
@@ -53,6 +72,9 @@ public class ContaBancaria {
 	}
 	
 	public void transferir(ContaBancaria ContaDestino, double valor) {
+		if (ContaDestino == null) {
+			throw new CampoVazioException("Conta bancária de destino");
+		}
 		sacar(valor);
 		ContaDestino.depositar(valor);
 	}
