@@ -10,6 +10,8 @@ public class ContaBancaria {
 	
 	public ContaBancaria(String nmCOntaInformado, Cliente titular) throws IllegalArgumentException, CampoVazioException, Maior3CaracteresException{
 		setNumero(nmCOntaInformado);
+		setTitular(titular);
+		setSaldo(0);
 	}
 
 	public String getNumero() {
