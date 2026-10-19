@@ -2,10 +2,14 @@ package teste;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import principal.Cliente;
 import principal.ContaBancaria;
+import principal.Movimento;
+import principal.TipoMovimento;
 
 class TesteProjeto {
 
@@ -33,18 +37,24 @@ class TesteProjeto {
 	}
 	
 	@Test
-	void sacarValorNegativoContaBase() {
+	void registroDeMovimentacoes() {
 		ContaBancaria conta = new ContaBancaria("001",new Cliente("Bruno", "Rua Camboriu"));
-		conta.depositar(100);
+		conta.depositar(1000);
 		
 		IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class, 
 				() -> {
-						conta.sacar(150);
+						conta.sacar(1001);
 						});
 		
-		assertEquals("Valor deve ser menor que o saldo da conta. Saldo atual R$ 100.0", excecao.getMessage());
-		conta.sacar(50);
-		assertEquals(50, conta.getSaldo());
+		assertEquals("Valor deve ser menor que o saldo da conta. Saldo atual R$ 1000.0", excecao.getMessage());
+		conta.sacar(250);
+		List<Movimento> movimentosAnalisados = conta.getMovimentos();
+		
+		assertEquals(750, conta.getSaldo());
+		assertEquals(TipoMovimento.CREDITO, movimentosAnalisados.get(0).getTipoMovimento());
+		assertEquals(1000, movimentosAnalisados.get(0).getValor());
+		assertEquals(TipoMovimento.DEBITO, movimentosAnalisados.get(1).getTipoMovimento());
+		assertEquals(250, movimentosAnalisados.get(1).getValor());
 	}
 	
 }
