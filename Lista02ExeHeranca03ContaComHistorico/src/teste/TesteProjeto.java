@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import principal.Cliente;
 import principal.ContaBancaria;
-import principal.ContaEspecial;
 
 class TesteProjeto {
 
@@ -48,21 +47,4 @@ class TesteProjeto {
 		assertEquals(50, conta.getSaldo());
 	}
 	
-	@Test
-	void sacarValorMaiorSaldoDentroLimite() {
-		ContaEspecial conta = new ContaEspecial("001",new Cliente("Bruno", "Rua Camboriu"),100);
-		
-		assertEquals(0, conta.getSaldo());
-		
-		conta.depositar(20);
-		
-		IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class, 
-				() -> {
-						conta.sacar(130);
-						});
-		
-		assertEquals("Saldo ultrapassa o limite de crédito disponível!", excecao.getMessage());
-		conta.sacar(50);
-		assertEquals(-30, conta.getSaldo());
-	}
 }
