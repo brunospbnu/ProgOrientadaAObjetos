@@ -1,0 +1,303 @@
+package principal;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+public class Sistema {
+	List<ContaBancaria> contasNormais;
+	List<ContaEspecial> contasEspeciais;
+	
+	public Sistema() {
+		contasNormais = new ArrayList<ContaBancaria>();
+		contasEspeciais = new ArrayList<ContaEspecial>();
+		String textoMenu = "Menu Principal - Escolha uma opção:" +
+							"\n 1 - Criar Conta" +
+							"\n 2 - Deletar conta " +
+							"\n 3 - Depositar valor " +
+							"\n 4 - Sacar valor " +
+							"\n 5 - Transferir valor " +
+							"\n 6 - Listar Todas as Contas " +
+							"\n 0 - Encerrar sistema ";
+		int opcao = -1;
+		do {
+			try {
+				String opcaoEmString = JOptionPane.showInputDialog(textoMenu);
+				opcao = Integer.parseInt(opcaoEmString);
+			} catch (Exception e) {
+				opcao = -1;
+			}
+			
+			switch (opcao) {
+			case 1:
+				criarConta();
+				break;
+			case 2:
+				deletarConta();
+				break;
+			case 3:
+				depositarValor();
+				break;
+			case 4:
+				sacarValor();
+				break;
+			case 5:
+				transferirValor();
+				break;
+			case 6:
+				listarcontas();
+				break;
+			case 0:
+				JOptionPane.showMessageDialog(null, "Sistema encerrado !!!");
+				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Opção inválida - Retornando ao menu !!! ");
+				break;
+			}
+		} while (opcao !=0);
+		
+		
+	}
+	
+	private void listarcontas() {
+		String listaCompleta = "Lista de Contas: \n \n  Contas Normais: ";
+		for (int i = 0; i < contasNormais.size(); i++) {
+			listaCompleta += "\n" + (i+1) + "ª) Número: " + contasNormais.get(i).getNumero() + " - Saldo: " + contasNormais.get(i).getSaldo() + " - Titular: " + contasNormais.get(i).getTitular().getNome();
+		}
+		if (contasNormais.isEmpty()) {
+			listaCompleta += "\n Sem contas normais !!!";
+		}
+		
+		listaCompleta += "\n \n  Contas especiais: ";
+		
+		for (int i = 0; i < contasEspeciais.size(); i++) {
+			listaCompleta += "\n" + (i+1) + "ª) Número: " + contasEspeciais.get(i).getNumero() + " - Saldo: " + contasEspeciais.get(i).getSaldo() + " - Titular: " + contasEspeciais.get(i).getTitular().getNome()+ " - Limite: " + contasEspeciais.get(i).getLimiteCredito();
+		}
+		if (contasEspeciais.isEmpty()) {
+			listaCompleta += "\n Sem contas especiais !!!";
+		}
+		listaCompleta += "\n\n FIM DA LISTA !!! ";
+		JOptionPane.showMessageDialog(null, listaCompleta);
+	}
+
+	
+	private void transferirValor() {
+		try {
+			String numeroContaOrigem = JOptionPane.showInputDialog("Informe o Número da Conta de ORIGEM: ");
+			String numeroContaDestino = JOptionPane.showInputDialog("Informe o Número da Conta de DESTINO: ");
+		
+			ContaBancaria contaOrigemEncontrada = null;
+			ContaBancaria contaDestinoEncontrada =null;
+			for (int i = 0; i < contasNormais.size(); i++) {
+				if (contasNormais.get(i).getNumero().equalsIgnoreCase(numeroContaOrigem)) {
+					contaOrigemEncontrada = contasNormais.get(i);
+				}
+				if (contasNormais.get(i).getNumero().equalsIgnoreCase(numeroContaDestino)) {
+					contaDestinoEncontrada = contasNormais.get(i);
+				}
+				
+			}
+			
+			ContaEspecial contaEspecialOrigemEncontrada = null;
+			ContaEspecial contaEspecialDestinoEncontrada = null;
+			for (int i = 0; i < contasEspeciais.size(); i++) {
+				if (contasEspeciais.get(i).getNumero().equalsIgnoreCase(numeroContaOrigem)) {
+					contaEspecialOrigemEncontrada = contasEspeciais.get(i);
+				}
+				if (contasEspeciais.get(i).getNumero().equalsIgnoreCase(numeroContaDestino)) {
+					contaEspecialDestinoEncontrada = contasEspeciais.get(i);
+				}
+			}
+			
+			
+			if (contaOrigemEncontrada == null && contaEspecialOrigemEncontrada == null) {
+				JOptionPane.showMessageDialog(null, "Nenhuma conta de ORIGEM foi encontrada com esse número !!!");
+				return;
+			}
+			
+			if (contaDestinoEncontrada == null && contaEspecialDestinoEncontrada == null) {
+				JOptionPane.showMessageDialog(null, "Nenhuma conta de DESTINO foi encontrada com esse número !!!");
+				return;
+			}
+			
+			String valorATransferirString =JOptionPane.showInputDialog("Informe o valor a transferir: ");
+			double valorATransferir = Double.parseDouble(valorATransferirString);
+			
+			if (contaOrigemEncontrada != null) {
+				if (contaDestinoEncontrada != null) {
+					contaOrigemEncontrada.transferir(contaDestinoEncontrada, valorATransferir);
+					JOptionPane.showMessageDialog(null, "O valor de R$ " + valorATransferir + " foi transferido para a conta nº " + contaDestinoEncontrada.getNumero());
+				}
+				else if (contaEspecialDestinoEncontrada != null){
+					contaOrigemEncontrada.transferir(contaEspecialDestinoEncontrada, valorATransferir);
+					JOptionPane.showMessageDialog(null, "O valor de R$ " + valorATransferir + " foi transferido para a conta nº " + contaEspecialDestinoEncontrada.getNumero());
+				}
+				
+			}
+				
+			else if (contaEspecialOrigemEncontrada != null) {
+				if (contaDestinoEncontrada != null) {
+					contaEspecialOrigemEncontrada.transferir(contaDestinoEncontrada, valorATransferir);
+					JOptionPane.showMessageDialog(null, "O valor de R$ " + valorATransferir + " foi transferido para a conta nº " + contaDestinoEncontrada.getNumero());
+					}
+				else if (contaEspecialDestinoEncontrada != null){
+					contaEspecialOrigemEncontrada.transferir(contaEspecialDestinoEncontrada, valorATransferir);
+					JOptionPane.showMessageDialog(null, "O valor de R$ " + valorATransferir + " foi transferido para a conta nº " + contaEspecialDestinoEncontrada.getNumero());
+					}
+			
+				JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso !!!");
+			}
+			
+			
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+	}
+
+	private void sacarValor() {
+		try {
+			String numeroConta = JOptionPane.showInputDialog("Informe o Número da Conta");
+			ContaBancaria contaNormalEncontrada = null;
+			for (int i = 0; i < contasNormais.size(); i++) {
+				if (contasNormais.get(i).getNumero().equalsIgnoreCase(numeroConta)) {
+					contaNormalEncontrada = contasNormais.get(i);
+				}
+			}
+			ContaEspecial contaEspecialEncontrada = null;
+			for (int i = 0; i < contasEspeciais.size(); i++) {
+				if (contasEspeciais.get(i).getNumero().equalsIgnoreCase(numeroConta)) {
+					contaEspecialEncontrada = contasEspeciais.get(i);
+				}
+			}
+			if (contaNormalEncontrada == null && contaEspecialEncontrada == null) {
+				JOptionPane.showMessageDialog(null, "Nenhuma conta foi encontrada com esse número !!!");
+			}
+			else if (contaEspecialEncontrada != null) {
+				String valorASacarString =JOptionPane.showInputDialog("Informe o valor a sacar: ");
+				double valorASacar = Double.parseDouble(valorASacarString);
+				contaEspecialEncontrada.sacar(valorASacar);
+				JOptionPane.showMessageDialog(null, "Valor sacado com sucesso !!!");
+			}
+			else if (contaNormalEncontrada != null) {
+				String valorASacarString =JOptionPane.showInputDialog("Informe o valor a sacar: ");
+				double valorASacar = Double.parseDouble(valorASacarString);
+				contaNormalEncontrada.sacar(valorASacar);
+				JOptionPane.showMessageDialog(null, "Valor sacado com sucesso !!!");
+			}
+			
+			
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+	}
+
+	private void depositarValor() {
+		try {
+			String numeroConta = JOptionPane.showInputDialog("Informe o Número da Conta");
+			ContaBancaria contaNormalEncontrada = null;
+			for (int i = 0; i < contasNormais.size(); i++) {
+				if (contasNormais.get(i).getNumero().equalsIgnoreCase(numeroConta)) {
+					contaNormalEncontrada = contasNormais.get(i);
+				}
+			}
+			ContaEspecial contaEspecialEncontrada = null;
+			for (int i = 0; i < contasEspeciais.size(); i++) {
+				if (contasEspeciais.get(i).getNumero().equalsIgnoreCase(numeroConta)) {
+					contaEspecialEncontrada = contasEspeciais.get(i);
+				}
+			}
+			if (contaNormalEncontrada == null && contaEspecialEncontrada == null) {
+				JOptionPane.showMessageDialog(null, "Nenhuma conta foi encontrada com esse número !!!");
+			}
+			else if (contaEspecialEncontrada != null) {
+				String valorADepositarString =JOptionPane.showInputDialog("Informe o valor a depositar: ");
+				double valorADepositar = Double.parseDouble(valorADepositarString);
+				contaEspecialEncontrada.depositar(valorADepositar);
+				JOptionPane.showMessageDialog(null, "Valor depositado com sucesso !!!");
+			}
+			else if (contaNormalEncontrada != null) {
+				String valorADepositarString =JOptionPane.showInputDialog("Informe o valor a depositar: ");
+				double valorADepositar = Double.parseDouble(valorADepositarString);
+				contaNormalEncontrada.depositar(valorADepositar);
+				JOptionPane.showMessageDialog(null, "Valor depositado com sucesso !!!");
+			}
+			
+			
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+	}
+
+	private void deletarConta() {
+		try {
+			String numeroConta = JOptionPane.showInputDialog("Informe o Número da Conta");
+			boolean contaRemovida = false;
+			for (int i = 0; i < contasNormais.size(); i++) {
+				if (contasNormais.get(i).getNumero().equalsIgnoreCase(numeroConta)) {
+					contasNormais.remove(i);
+					JOptionPane.showMessageDialog(null, "A conta Normal nº " + numeroConta + " foi removida com sucesso !!!");
+					contaRemovida = true;
+				}
+			}
+			for (int i = 0; i < contasEspeciais.size(); i++) {
+				if (contasEspeciais.get(i).getNumero().equalsIgnoreCase(numeroConta)) {
+					contasEspeciais.remove(i);
+					JOptionPane.showMessageDialog(null, "A conta Especial nº " + numeroConta + " foi removida com sucesso !!!");
+					contaRemovida = true;
+				}
+			}
+			if (contaRemovida == false) {
+				JOptionPane.showMessageDialog(null, "Nenhuma conta foi encontrada com esse número !!!");
+			}
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+	}
+
+	private void criarConta() {
+		try {
+			Cliente novoCliente = new Cliente("Não Informado", "Não Informado");
+			
+			String nomeCliente = JOptionPane.showInputDialog("Informe o nome do cliente: ");
+			novoCliente.setNome(nomeCliente);
+			String enderecoCliente = JOptionPane.showInputDialog("Informe o endereço do cliente: ");
+			novoCliente.setEndereco(enderecoCliente);
+			
+			int tipoConta;
+			do {
+				String tipoContaString = JOptionPane.showInputDialog("Informe o tipo de conta: \n 1 - Normal \n 2 - Especial (com cheque especial)");
+				tipoConta = Integer.parseInt(tipoContaString);
+				String numeroInformado = JOptionPane.showInputDialog("Informe o número da conta: ");
+				switch (tipoConta) {
+				case 1:
+					ContaBancaria novaConta = new ContaBancaria(numeroInformado, novoCliente);
+					contasNormais.add(novaConta);
+					JOptionPane.showMessageDialog(null, "Conta adicionada com sucesso !!!");
+					break;
+				case 2:
+					String limiteEmString = JOptionPane.showInputDialog("Como se trata de uma conta especial, informe o limite de crédito: ");
+					double limiteCredito = Double.parseDouble(limiteEmString);
+					ContaEspecial novaContaEspecial = new ContaEspecial(numeroInformado, novoCliente, limiteCredito);
+					contasEspeciais.add(novaContaEspecial);
+					JOptionPane.showMessageDialog(null, "Conta adicionada com sucesso !!!");
+					break;
+
+				default:
+					JOptionPane.showMessageDialog(null, "Opção inválida - tente novamente !!");
+					break;
+				}
+			} while (tipoConta < 1 || tipoConta > 2);
+			
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			}
+	}
+
+	public static void main(String[] args) {
+		new Sistema();
+	}
+}
