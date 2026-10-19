@@ -1,5 +1,8 @@
 package principal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import excecoes.CampoVazioException;
 import excecoes.Maior3CaracteresException;
 
@@ -7,10 +10,12 @@ public class ContaBancaria {
 	private String numero;
 	private double saldo;
 	private Cliente titular;
+	private List<Movimento> movimentos;
 	
 	public ContaBancaria(String nmCOntaInformado, Cliente titular) throws IllegalArgumentException, CampoVazioException, Maior3CaracteresException{
 		setNumero(nmCOntaInformado);
 		setTitular(titular);
+		movimentos = new ArrayList<Movimento>();
 		setSaldo(0);
 	}
 
@@ -81,7 +86,13 @@ public class ContaBancaria {
 		ContaDestino.depositar(valor);
 	}
 	
+	public List<Movimento> getMovimentos() {
+		return movimentos;
+	}
 	
+	public void incluirMovimento(Movimento m) {
+		movimentos.add(m);
+	}
 	
 	
 }
