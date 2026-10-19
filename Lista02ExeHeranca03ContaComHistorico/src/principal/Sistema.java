@@ -16,6 +16,7 @@ public class Sistema {
 							"\n 4 - Sacar valor " +
 							"\n 5 - Transferir valor " +
 							"\n 6 - Listar Todas as Contas " +
+							"\n 7 - Listar Movimentações de uma conta " +
 							"\n 0 - Encerrar sistema ";
 		int opcao = -1;
 		do {
@@ -44,6 +45,9 @@ public class Sistema {
 				break;
 			case 6:
 				listarcontas();
+				break;
+			case 7:
+				listarmovimentacoes();
 				break;
 			case 0:
 				JOptionPane.showMessageDialog(null, "Sistema encerrado !!!");
@@ -196,6 +200,29 @@ public class Sistema {
 		} catch (IllegalArgumentException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			}
+	}
+	
+	private void listarmovimentacoes() {
+		String numeroConta = JOptionPane.showInputDialog("Informe o número da conta");
+		String listaDeMovimentacoes = "Lista de Movimentações: ";
+		boolean contaEncontrada = false;
+		
+		for (int i = 0; i < contasNormais.size(); i++) {
+			if (numeroConta.equals(contasNormais.get(i).getNumero())) {
+				for (int j = 0; j < contasNormais.get(i).getMovimentos().size(); j++) {
+					Movimento movimentoAtual = contasNormais.get(i).getMovimentos().get(j);
+					listaDeMovimentacoes += "\n Data: " + movimentoAtual.getData() + " - Hora: " + movimentoAtual.getHora()+ " - Tipo: " + movimentoAtual.getTipoMovimento() + " - Valor: " + movimentoAtual.getValor();
+				}
+				contaEncontrada = true;
+				listaDeMovimentacoes += "\n Saldo final / atual = R$ " + contasNormais.get(i).getSaldo() + "\n Fim das movimentações";
+			}
+		}
+		if (contaEncontrada == true) {
+			JOptionPane.showMessageDialog(null, listaDeMovimentacoes);
+		}
+		else if (contaEncontrada == false) {
+			JOptionPane.showMessageDialog(null, "\n Não foi encontrada uma conta com o número informado !!!");
+		}
 	}
 
 	public static void main(String[] args) {

@@ -64,6 +64,8 @@ public class ContaBancaria {
 			throw new IllegalArgumentException("Valor deve ser maior que 0");
 		}
 		saldo = saldo + valor;
+		Movimento novoMovimento = new Movimento(valor, TipoMovimento.CREDITO);
+		incluirMovimento(novoMovimento);
 		//Poderia ser: 
 		//this.setSaldo(this.getSaldo() +valor);
 	}
@@ -76,6 +78,8 @@ public class ContaBancaria {
 			throw new IllegalArgumentException("Valor deve ser menor que o saldo da conta. Saldo atual R$ " + saldo);
 		}
 		saldo = saldo - valor;
+		Movimento novoMovimento = new Movimento(valor, TipoMovimento.DEBITO);
+		incluirMovimento(novoMovimento);
 	}
 	
 	public void transferir(ContaBancaria ContaDestino, double valor) {
@@ -90,7 +94,7 @@ public class ContaBancaria {
 		return movimentos;
 	}
 	
-	public void incluirMovimento(Movimento m) {
+	protected void incluirMovimento(Movimento m) {
 		movimentos.add(m);
 	}
 	
