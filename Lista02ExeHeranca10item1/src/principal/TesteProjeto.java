@@ -38,6 +38,31 @@ class TesteProjeto {
 		assertEquals(n.getRam(), 10);
 		assertTrue(n.isSsd());
 		
+		n.setRam(16);
+		n.setSsd(true);
+		assertEquals(n.getMesesGarantia(), 9);
+		assertEquals(n.desconto(), 400);
+		
+	}
+	
+	void testarCampanha() {
+		Notebook n1 = new Notebook("Note", 3000, 3, 16, false);
+		Notebook n2 = new Notebook("Note", 1000, 2, 8, true);
+		Smartphone s1 = new Smartphone(500, 1, 256, true);
+		
+		Campanha campanha = new Campanha();
+		campanha.addProduto(n1); // tem que ter 9 garantia (+6 pois tem 16 gb de ram) e preço 3000 ( não tem desconto pois não tem 5G).
+		campanha.addProduto(n2); // 2 garantia ( sem aumento pois tem menos de 16gb de ram) e preço de 920  (tem desconto de 8% pois tem 5G).
+		campanha.addProduto(s1); // 4 garantia (+3 meses porque tem 256 gb de ram) e preço de 475 (desconto de 5% porque tem 5G).
+		
+		assertEquals(campanha.precoTotal(), 4395); //soma de todos os preços acima.
+		
+		String texto = "Note\nR$3000.0 - Garantia: 9\nNote\nR$920.0 - Garantia: 2\nSmartphone\n"
+						+ "R$475.0 - Garantia: 4\n";
+		
+		
+		assertEquals(campanha.imprimir(), texto);
+		System.out.println(campanha.imprimir() + "\n\n" + texto);
 	}
 
 }
