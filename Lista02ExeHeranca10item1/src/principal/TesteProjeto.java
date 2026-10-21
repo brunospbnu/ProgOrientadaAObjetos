@@ -29,14 +29,14 @@ class TesteProjeto {
 		assertEquals(s.desconto(), 50);
 		assertEquals(s.precoComDesconto(), 950);
 	}
-	
+	@Test
 	void testarNotebook() {
 		Notebook n = new Notebook("Notebook", 5000, 3, 10, false);
 		assertEquals(n.getNome(), "Notebook");
 		assertEquals(n.getPreco(), 5000);
 		assertEquals(n.getMesesGarantia(), 3);
 		assertEquals(n.getRam(), 10);
-		assertTrue(n.isSsd());
+		assertTrue(!n.isSsd());
 		
 		n.setRam(16);
 		n.setSsd(true);
@@ -44,7 +44,7 @@ class TesteProjeto {
 		assertEquals(n.desconto(), 400);
 		
 	}
-	
+	@Test
 	void testarCampanha() {
 		Notebook n1 = new Notebook("Note", 3000, 3, 16, false);
 		Notebook n2 = new Notebook("Note", 1000, 2, 8, true);
