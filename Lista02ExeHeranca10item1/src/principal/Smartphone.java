@@ -30,6 +30,7 @@ public class Smartphone extends Produto {
 		return armazenamento;
 	}
 	
+	@Override
 	public double desconto() {
 		if (banda5G) {
 			return getPreco() * 0.05; 

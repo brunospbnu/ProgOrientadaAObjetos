@@ -48,5 +48,10 @@ public abstract class Produto {
 	}
 	
 	
+	public abstract double desconto();
+	//Serve apenas para definir que nas classes filhas tem que implementar esse método.
+	//Com essa definição, as classes filhas vão dar erro se não tiverem os metodos abstratos da mãe.
+	//Se tem um metodo abstrato, a classe onde ele está precisa ser abstrata.
+	
 
 }

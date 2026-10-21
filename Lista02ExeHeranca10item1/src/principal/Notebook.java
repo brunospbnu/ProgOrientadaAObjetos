@@ -26,7 +26,8 @@ public class Notebook extends Produto {
 	public int getRam() {
 		return ram;
 	}
-
+	
+	@Override
 	public double desconto() {
 		if (ssd) {
 			return getPreco() * 0.08;
