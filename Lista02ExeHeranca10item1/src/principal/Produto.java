@@ -1,7 +1,9 @@
 package principal;
 
-public class Produto {
+public abstract class Produto {
 
+	// A classe abstrata não pode ser instanciada e serve apenas como modelo para as classes filhas.
+	
 	private String nome;
 	private double preco;
 	private int mesesGarantia;

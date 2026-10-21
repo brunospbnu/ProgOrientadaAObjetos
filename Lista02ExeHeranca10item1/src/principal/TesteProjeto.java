@@ -5,14 +5,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class TesteProjeto {
-
-	@Test
-	void testarProduto() {
+	
+	/*	@Test
+		void testarProduto() {
 		Produto p = new Produto ("Nome", 20, 4);
 		assertEquals(p.getNome(), "Nome");
 		assertEquals(p.getPreco(), 20);
 		assertEquals(p.getMesesGarantia(), 4);
-	}
+		}
+	 */
+
 	
 	@Test
 	void testarSmartphone() {
