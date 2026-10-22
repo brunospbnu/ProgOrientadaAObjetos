@@ -4,9 +4,10 @@ public class Onibus extends Veiculo {
 	private int quantPassageiros;
 	private double porcEficiencia;
 	
-	public Onibus(String placaInformada, double capTanqueInformada, double consumoInformado, int quantPassageirosInformada) throws IllegalArgumentException {
-		super(placaInformada, capTanqueInformada, consumoInformado);
+	public Onibus(String placaInformada, double tanque, double consumoInformado, int quantPassageirosInformada) throws IllegalArgumentException {
+		super(placaInformada, tanque, consumoInformado);
 		setQuantPassageiros(quantPassageirosInformada);
+		setPorcEficiencia(quantPassageirosInformada);
 	}
 
 	
@@ -28,23 +29,23 @@ public class Onibus extends Veiculo {
 	}
 
 	public void setPorcEficiencia(int quantPassegairosInformada) {
-			porcEficiencia = (quantPassegairosInformada / 10) * 5;
+			porcEficiencia = 100.00 - ((quantPassegairosInformada / 10) * 5);
 	
 	}
-	
-	
 	
 	
 	@Override
 	public double calcAutonomia() {
-		// TODO Auto-generated method stub
-		return 0;
+		double autonomia = getTanque() * getConsumoBase() * getPorcEficiencia();
+		return autonomia;
 	}
 
 	@Override
-	public double calcCustoViagem() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double calcCustoViagem(double kmViagem, double precoComb) {
+		double litroNecessario;
+		litroNecessario = kmViagem * getConsumoBase() * (100 + (Math.abs(getPorcEficiencia() - 100)));
+		double custo = litroNecessario * precoComb;
+		return custo;
 	}
 
 }

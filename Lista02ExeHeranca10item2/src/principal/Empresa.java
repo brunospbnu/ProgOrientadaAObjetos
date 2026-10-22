@@ -21,15 +21,37 @@ public class Empresa {
 		this.veiculos = veiculos;
 	}
 	
-	public void addVeiculo(Veiculo veiculoInformado) {
-		//TODO fazer esse metodo.
+	public void addVeiculo(Veiculo veiculoInformado) throws IllegalArgumentException{
+		if (veiculoInformado == null) {
+			throw new IllegalArgumentException("O veiculo não pode ser nulo !!!");
+		}
+		veiculos.add(veiculoInformado);
 	}
 	
 	public String listarVeiculos() {
-		String lista = "";
+		String lista = "Lista de Veículos";
+		for (Veiculo veiculo : veiculos) {
+			lista += "\n Categoria: " + veiculo.getClass().getName() + " - Placa: " + veiculo.getPlaca() 
+					+ " - Litros no Tanque " + veiculo.getTanque() + " - Consumo Base: " + veiculo.getConsumoBase();
+			if (veiculo instanceof Carro) {
+				Carro carro = (Carro) veiculo;
+				String estadoDoAr = "";
+				if (carro.isAcLigado()) {
+					estadoDoAr = "LIGADO";
+				}
+				else {
+					estadoDoAr = "DESLIGADO";
+				}
+				lista += " - Estado do AR: " + estadoDoAr;
+			}
+			else if (veiculo instanceof Onibus) {
+				Onibus onibus = (Onibus) veiculo;
+				lista += " - Quantidade de passageiros: " + onibus.getQuantPassageiros()
+						+ " - Eficiencia Atual: " + onibus.getPorcEficiencia() + "%";
+			}
+		}
 		
-		//TODO fazer preenchimento da lista.
-		
+		lista += "Fim da lista";
 		
 		return lista;
 	}

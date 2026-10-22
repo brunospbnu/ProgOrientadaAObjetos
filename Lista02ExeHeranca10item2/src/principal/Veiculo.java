@@ -5,9 +5,9 @@ public abstract class Veiculo {
 	private double capacidadeTanque;
 	private double consumoBase;
 	
-	public Veiculo(String placaInformada, double capTanqueInformada, double consumoInformado) throws IllegalArgumentException {
+	public Veiculo(String placaInformada, double tanque, double consumoInformado) throws IllegalArgumentException {
 		setPlaca(placaInformada);
-		setCapacidadeTanque(capTanqueInformada);
+		setCapacidadeTanque(tanque);
 		setConsumoBase(consumoInformado);
 	}
 	
@@ -28,15 +28,15 @@ public abstract class Veiculo {
 	
 	
 	
-	public double getCapacidadeTanque() {
+	public double getTanque() {
 		return capacidadeTanque;
 	}
 	
-	public void setCapacidadeTanque(double capacidadeTanque) throws IllegalArgumentException {
-		if (capacidadeTanque <=0) {
+	public void setCapacidadeTanque(double tanque) throws IllegalArgumentException {
+		if (tanque <=0) {
 			throw new IllegalArgumentException("A capacidade do tanque deve ser maior que zero litros !!!");
 		}
-		this.capacidadeTanque = capacidadeTanque;
+		this.capacidadeTanque = tanque;
 	}
 	
 	
@@ -56,6 +56,6 @@ public abstract class Veiculo {
 	
 	
 	
-	public abstract double calcCustoViagem();
+	public abstract double calcCustoViagem(double kmViagem, double precoComb);
 	
 }

@@ -3,8 +3,8 @@ package principal;
 public class Carro extends Veiculo {
 	private boolean acLigado;
 	
-	Carro(String placaInformada, double capTanqueInformada, double consumoInformado, boolean acLigado) {
-		super(placaInformada, capTanqueInformada, consumoInformado);
+	Carro(String placaInformada, double tanque, double consumoInformado, boolean acLigado) {
+		super(placaInformada, tanque, consumoInformado);
 		setAcLigado(acLigado);
 	}
 
@@ -18,13 +18,28 @@ public class Carro extends Veiculo {
 
 	@Override
 	public double calcAutonomia() {
-		// TODO Auto-generated method stub
-		return 0;
+		double autonomia;
+		if (acLigado) {
+			autonomia = getTanque() * getConsumoBase() * 0.9;
+		}
+		else {
+			autonomia = getTanque() * getConsumoBase();
+		}
+		return autonomia;
 	}
 
 	@Override
-	public double calcCustoViagem() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double calcCustoViagem(double kmViagem, double precoComb) {
+		double litroNecessario;
+		if (acLigado) {
+			litroNecessario = kmViagem * getConsumoBase() * 1.1;
+		}
+		else {
+			litroNecessario = kmViagem * getConsumoBase();
+		}
+		
+		double custo = litroNecessario * precoComb;
+		
+		return custo;
 	}
 }
