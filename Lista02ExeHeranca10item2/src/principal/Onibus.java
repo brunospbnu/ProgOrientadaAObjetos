@@ -36,14 +36,14 @@ public class Onibus extends Veiculo {
 	
 	@Override
 	public double calcAutonomia() {
-		double autonomia = getTanque() * getConsumoBase() * getPorcEficiencia();
+		double autonomia = getTanque() * getConsumoBase() * (getPorcEficiencia() /100.00);
 		return autonomia;
 	}
 
 	@Override
 	public double calcCustoViagem(double kmViagem, double precoComb) {
 		double litroNecessario;
-		litroNecessario = kmViagem * getConsumoBase() * (100 + (Math.abs(getPorcEficiencia() - 100)));
+		litroNecessario = kmViagem / getConsumoBase() * ((100 + (Math.abs(getPorcEficiencia() - 100))) /100.00);
 		double custo = litroNecessario * precoComb;
 		return custo;
 	}

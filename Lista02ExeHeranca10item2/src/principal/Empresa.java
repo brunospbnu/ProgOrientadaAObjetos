@@ -31,7 +31,7 @@ public class Empresa {
 	public String listarVeiculos() {
 		String lista = "Lista de Veículos";
 		for (Veiculo veiculo : veiculos) {
-			lista += "\n Categoria: " + veiculo.getClass().getName() + " - Placa: " + veiculo.getPlaca() 
+			lista += "\n Categoria: " + veiculo.getClass().getSimpleName() + " - Placa: " + veiculo.getPlaca() 
 					+ " - Litros no Tanque " + veiculo.getTanque() + " - Consumo Base: " + veiculo.getConsumoBase();
 			if (veiculo instanceof Carro) {
 				Carro carro = (Carro) veiculo;
@@ -51,7 +51,7 @@ public class Empresa {
 			}
 		}
 		
-		lista += "Fim da lista";
+		lista += "\nFim da lista !!!";
 		
 		return lista;
 	}

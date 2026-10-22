@@ -32,10 +32,10 @@ public class Carro extends Veiculo {
 	public double calcCustoViagem(double kmViagem, double precoComb) {
 		double litroNecessario;
 		if (acLigado) {
-			litroNecessario = kmViagem * getConsumoBase() * 1.1;
+			litroNecessario = kmViagem / getConsumoBase() * 1.1;
 		}
 		else {
-			litroNecessario = kmViagem * getConsumoBase();
+			litroNecessario = kmViagem / getConsumoBase();
 		}
 		
 		double custo = litroNecessario * precoComb;
