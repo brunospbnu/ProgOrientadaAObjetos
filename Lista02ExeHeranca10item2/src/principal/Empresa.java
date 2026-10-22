@@ -57,11 +57,12 @@ public class Empresa {
 	}
 	
 	public Veiculo calcVeiculoMaisBaratoViagem(double distanciaKm, double preco) {
-		Veiculo melhorVeiculo = null;
-		
-		//TODO fazer parte do metodo que analisa e define o melhor veiculo.
-		
-		
+		Veiculo melhorVeiculo = veiculos.get(0);
+		for (Veiculo veiculo : veiculos) {
+			if (veiculo.calcCustoViagem(distanciaKm, preco) < melhorVeiculo.calcCustoViagem(distanciaKm, preco)) {
+				melhorVeiculo = veiculo;
+			}
+			}
 		return melhorVeiculo;
 	}
 }
