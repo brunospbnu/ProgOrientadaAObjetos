@@ -34,18 +34,16 @@ public class Carro extends Veiculo {
 	@Override
 	public double calcCustoViagem(double kmViagem, double precoComb) {
 		
-		//TODO corrigir erro no método.
-		
-		double litroNecessario;
+		double consumoEfetivo;
 		
 		if (acLigado) {
-			litroNecessario = kmViagem / getConsumoBase() * 1.1;
+			consumoEfetivo = getConsumoBase() * 0.9;
 		}
 		else {
-			litroNecessario = kmViagem / getConsumoBase();
+			consumoEfetivo = getConsumoBase();
 		}
 		
-		double custo = litroNecessario * precoComb;
+		double custo = (kmViagem / consumoEfetivo) * precoComb;
 		
 		return custo;
 	}

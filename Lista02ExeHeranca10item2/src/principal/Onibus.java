@@ -20,6 +20,7 @@ public class Onibus extends Veiculo {
 			throw new IllegalArgumentException("A quantidade de passagerios deve ser maior do que zero e menor que 200 !!!");
 		}
 		this.quantPassageiros = quantPassageiros;
+		setPorcEficiencia(quantPassageiros);
 	}
 
 
@@ -43,11 +44,10 @@ public class Onibus extends Veiculo {
 	@Override
 	public double calcCustoViagem(double kmViagem, double precoComb) {
 		
-		//TODO corrigir erro no método.
+		double consumoEfetivo = getConsumoBase() * (porcEficiencia / 100);
 		
-		double litroNecessario;
-		litroNecessario = kmViagem / getConsumoBase() * ((100 + (Math.abs(getPorcEficiencia() - 100))) /100.00);
-		double custo = litroNecessario * precoComb;
+		double custo = (kmViagem / consumoEfetivo) * precoComb;
+		
 		return custo;
 	}
 

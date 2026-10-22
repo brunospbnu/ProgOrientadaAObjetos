@@ -57,6 +57,10 @@ public class Empresa {
 	}
 	
 	public Veiculo calcVeiculoMaisBaratoViagem(double distanciaKm, double preco) {
+		if (veiculos.isEmpty()) {
+			throw new IllegalStateException("A frota está vazia!");
+		}
+		
 		Veiculo melhorVeiculo = veiculos.get(0);
 		for (Veiculo veiculo : veiculos) {
 			if (veiculo.calcCustoViagem(distanciaKm, preco) < melhorVeiculo.calcCustoViagem(distanciaKm, preco)) {
