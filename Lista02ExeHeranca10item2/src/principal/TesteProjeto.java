@@ -9,6 +9,7 @@ class TesteProjeto {
 	@Test
 	void test() {
 		fail("Not yet implemented");
+		//TODO implementar os testes
 	}
 
 }
