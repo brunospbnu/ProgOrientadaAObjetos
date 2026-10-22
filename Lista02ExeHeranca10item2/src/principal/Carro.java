@@ -27,10 +27,17 @@ public class Carro extends Veiculo {
 		}
 		return autonomia;
 	}
+	
+	
+	
 
 	@Override
 	public double calcCustoViagem(double kmViagem, double precoComb) {
+		
+		//TODO corrigir erro no método.
+		
 		double litroNecessario;
+		
 		if (acLigado) {
 			litroNecessario = kmViagem / getConsumoBase() * 1.1;
 		}

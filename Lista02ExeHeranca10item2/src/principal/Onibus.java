@@ -42,6 +42,9 @@ public class Onibus extends Veiculo {
 
 	@Override
 	public double calcCustoViagem(double kmViagem, double precoComb) {
+		
+		//TODO corrigir erro no método.
+		
 		double litroNecessario;
 		litroNecessario = kmViagem / getConsumoBase() * ((100 + (Math.abs(getPorcEficiencia() - 100))) /100.00);
 		double custo = litroNecessario * precoComb;

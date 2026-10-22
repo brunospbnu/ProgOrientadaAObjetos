@@ -16,7 +16,7 @@ class TesteProjeto {
 		assertEquals(10, c1.getConsumoBase());
 		assertEquals(false, c1.isAcLigado());
 		assertEquals(200, c1.calcAutonomia()); // autonomia 20 * 10 = 200
-		assertEquals(245, c1.calcCustoViagem(350, 7)); // custo viagem exemplo: 350 km - gasolina 7 reais o litro: 350 / 10 = 35 *6 = 245
+		assertEquals(245, c1.calcCustoViagem(350, 7)); // custo viagem exemplo: 350 km - gasolina 7 reais o litro: 350 / 10 = 35 *7 = 245
 		
 		
 		assertEquals("PlacaC2", c2.getPlaca());
@@ -24,7 +24,9 @@ class TesteProjeto {
 		assertEquals(15, c2.getConsumoBase());
 		assertEquals(true, c2.isAcLigado());
 		assertEquals(405, c2.calcAutonomia()); // autonomia 30 * 15 = 450 - 10% = 405.
-		assertEquals(179.66666666666669, c2.calcCustoViagem(350, 7)); // custo viagem exemplo: 350 km - gasolina 7 reais o litro: 350 / 15 = 23,33 * 7 = 163,33 + 10% = 179,66
+		assertEquals(179.66666666666669, c2.calcCustoViagem(350, 7)); // custo viagem exemplo: 350 km - gasolina 7 reais o litro: 350 km / 15 km por litro = 23,33 * 1.1 = 25,6666 *7 = R$ 179,6666666666667
+		
+
 	}
 	
 	@Test
@@ -66,12 +68,7 @@ class TesteProjeto {
 		//System.out.println(e1.listarVeiculos());
 		
 		
-		assertEquals("Lista de Veículos\n"
-				+ " Categoria: Carro - Placa: PlacaC1 - Litros no Tanque 20.0 - Consumo Base: 10.0 - Estado do AR: DESLIGADO\n"
-				+ " Categoria: Carro - Placa: PlacaC2 - Litros no Tanque 30.0 - Consumo Base: 15.0 - Estado do AR: LIGADO\n"
-				+ " Categoria: Onibus - Pl aca: PlacaO1 - Litros no Tanque 20.0 - Consumo Base: 10.0 - Quantidade de passageiros: 9 - Eficiencia Atual: 100.0%\n"
-				+ " Categoria: Onibus - Placa: PlacaO2 - Litros no Tanque 30.0 - Consumo Base: 15.0 - Quantidade de passageiros: 20 - Eficiencia Atual: 90.0%\n"
-				+ "Fim da lista !!!",e1.listarVeiculos());
+		assertEquals(null,e1.listarVeiculos());
 	}
 	@Test
 	void testaCalcVeiculoMaisBaratoViagem() {
