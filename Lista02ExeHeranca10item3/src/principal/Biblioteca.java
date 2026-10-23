@@ -18,4 +18,25 @@ public class Biblioteca {
 		this.emprestimos = emprestimos;
 	}
 	
+	public void addEmprestimo() {
+		
+		//TODO fazer metodo.
+	}
+	
+	public String listarEmprestimos() {
+		String texto = "";
+		
+		//TODO fazer listagem em texto.
+		
+		return texto;
+	}
+	
+	public double devolucao() {
+		double multaDevida = 0;
+		
+		//TODO fazer metodo.
+		
+		return multaDevida;
+	}
+	
 }

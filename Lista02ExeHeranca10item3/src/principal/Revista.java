@@ -4,8 +4,9 @@ import java.time.LocalDate;
 
 public class Revista extends ItemBiblioteca {
 
-	public Revista(LocalDate dataEmprestimo, LocalDate dataPrevistaDevolucao, double valorMultaDia) {
-		super(dataEmprestimo, dataPrevistaDevolucao, valorMultaDia);
+	public Revista(LocalDate dataEmprestimo) {
+		
+		super(dataEmprestimo, LocalDate.now().plusDays(7), 0.30);
 	}
 
 }
