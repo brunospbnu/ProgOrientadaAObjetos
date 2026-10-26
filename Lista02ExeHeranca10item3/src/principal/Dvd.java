@@ -7,7 +7,7 @@ public class Dvd extends ItemBiblioteca {
 
 	public Dvd(LocalDate dataEmprestimo) {
 		
-		super(dataEmprestimo, LocalDate.now().plusDays(3), 1.20);
+		super(dataEmprestimo, dataEmprestimo.plusDays(3), 1.20);
 		
 	}
 	

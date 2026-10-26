@@ -6,7 +6,7 @@ public class Revista extends ItemBiblioteca {
 
 	public Revista(LocalDate dataEmprestimo) {
 		
-		super(dataEmprestimo, LocalDate.now().plusDays(7), 0.30);
+		super(dataEmprestimo, dataEmprestimo.plusDays(7), 0.30);
 	}
 
 }

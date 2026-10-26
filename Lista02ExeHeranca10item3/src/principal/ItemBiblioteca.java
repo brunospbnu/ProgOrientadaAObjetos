@@ -44,14 +44,31 @@ public abstract class ItemBiblioteca {
 		int nmUnicoDataDevolucao = (int) dataDevEfetiva.toEpochDay();
 		
 		if (nmUnicoDataPrevista < nmUnicoDataDevolucao) {
-			diasAtraso = nmUnicoDataPrevista - nmUnicoDataDevolucao;
+			diasAtraso = nmUnicoDataDevolucao - nmUnicoDataPrevista ;
 			
 		}
 		
 		multaDevida = valorMultaDia * diasAtraso;
 		
+		
 		return multaDevida;
 	}
+	
+	
+	/*
+	 OBS:
+	 
+	 O seu método calcularMulta em ItemBiblioteca.java utilizou perfeitamente o toEpochDay() para subtrair os inteiros e achar os dias de atraso. 
+	 Essa lógica está 100% correta.   
+	 Como dica de evolução técnica, o Java moderno possui uma classe chamada ChronoUnit que faz exatamente essa conta de forma mais direta, 
+	 eliminando a necessidade de variáveis intermediárias int:
+	 
+	 Javaimport java.time.temporal.ChronoUnit;
+	 // ... dentro de calcularMulta:
+	 /// if (dataDevEfetiva.isAfter(dataPrevistaDevolucao)) {
+	 /// diasAtraso = (int) ChronoUnit.DAYS.between(dataPrevistaDevolucao, dataDevEfetiva);}.
+	 
+	 */
 	
 	
 }

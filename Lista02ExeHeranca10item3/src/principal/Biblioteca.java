@@ -47,13 +47,23 @@ public class Biblioteca {
 		return texto;
 	}
 	
+	
+	/*
+	 OBS:
+	 Formatação Visual de MoedaNo método listarEmprestimos(), a impressão do valor da multa ficou com casas decimais quebradas ou ausentes 
+	 (ex: R$ 1.2 e R$ 0.3).   
+	 Para garantir que o console sempre mostre formato de dinheiro (ex: R$ 1,20), 
+	 aplique o String.format diretamente na concatenação do seu texto dentro de Biblioteca.java:
+	 "... Valor da multa por dia: R$ " + String.format("%.2f", itemAtual.getValorMultaDia());
+	 */
+	
 	public double devolucao(ItemBiblioteca itemDevolvido, LocalDate dataDevEfetiva) throws IllegalArgumentException {
 		double multaDevida = 0;
 		if (itemDevolvido == null) {
 			throw new IllegalArgumentException("O item não pode estar vazio !!!");
 		}
-		multaDevida = itemDevolvido.calcularMulta(dataDevEfetiva);
-		
+		multaDevida =itemDevolvido.calcularMulta(dataDevEfetiva);
+	
 		return multaDevida;
 	}
 	
