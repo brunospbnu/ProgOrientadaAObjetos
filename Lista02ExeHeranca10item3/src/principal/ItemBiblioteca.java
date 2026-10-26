@@ -37,5 +37,21 @@ public abstract class ItemBiblioteca {
 		this.valorMultaDia = valorMultaDia;
 	}
 	
+	public double calcularMulta(LocalDate dataDevEfetiva) {
+		double multaDevida = 0;
+		int diasAtraso = 0;
+		int nmUnicoDataPrevista = (int) dataPrevistaDevolucao.toEpochDay();
+		int nmUnicoDataDevolucao = (int) dataDevEfetiva.toEpochDay();
+		
+		if (nmUnicoDataPrevista < nmUnicoDataDevolucao) {
+			diasAtraso = nmUnicoDataPrevista - nmUnicoDataDevolucao;
+			
+		}
+		
+		multaDevida = valorMultaDia * diasAtraso;
+		
+		return multaDevida;
+	}
+	
 	
 }
