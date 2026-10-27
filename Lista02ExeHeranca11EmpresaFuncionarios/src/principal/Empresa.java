@@ -51,7 +51,10 @@ public class Empresa {
 	public double calcularCustosSalarios() {
 		double soma = 0;
 		
-		for (int i = 0; i < funcionarios.size(); i++) {
+		/*
+		 Inicialmente havia feito assim:
+		 
+		 for (int i = 0; i < funcionarios.size(); i++) {
 			Funcionario	funcionarioAtual = funcionarios.get(i);
 			
 			if (funcionarioAtual instanceof Programador) {
@@ -69,8 +72,31 @@ public class Empresa {
 			else {
 				throw new IllegalArgumentException("Erro ao identificar o tipo de funcionário !!!");
 			}
+			}
 			
-		}
+			--------------
+			
+			Contudo:
+			Isso é a antítese do polimorfismo. 
+			A principal razão de existir um método abstrato calcularSalario() na classe mãe Funcionario é justamente para que o sistema 
+			não precise investigar "quem é quem" usando instanceof.   
+			O polimorfismo permite que você dê uma ordem genérica à classe mãe, e o próprio Java se encarrega de redirecionar a execução para a classe filha 
+			correta em tempo real. Se amanhã a empresa criar os cargos "Gerente" e "Estagiário", o seu código atual quebraria, exigindo que você abrisse 
+			a classe Empresa para adicionar novos else if.   
+			
+			A Correção (O Poder do Polimorfismo):
+			Você pode apagar todas as verificações de instanceof e casts. O método completo se resume a isso:
+		 */
+		
+		for (Funcionario f : funcionarios) {
+			
+	        // O Java sabe automaticamente se f é Vendedor ou Programador na hora de calcular
+			
+	        soma += f.calcularSalario();
+	    }
+		
+		
+		
 		
 		return soma;
 	}

@@ -24,7 +24,7 @@ public class Programador extends Funcionario{
 		linguagens.add(lingInformada);
 	}
 	
-	public void excluirLinguagem(String lingInformada) throws IllegalArgumentException {
+	public void removerLinguagem(String lingInformada) throws IllegalArgumentException {
 		if (lingInformada == null) {
 			throw new IllegalArgumentException("A linguagem informada não pode estar vazia !!!");
 		}
