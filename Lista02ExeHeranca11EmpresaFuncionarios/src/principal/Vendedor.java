@@ -1,5 +1,6 @@
 package principal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vendedor extends Funcionario {
@@ -10,6 +11,7 @@ public class Vendedor extends Funcionario {
 	public Vendedor(String nome, double salarioBase, double percentualComissao) throws IllegalArgumentException {
 		super(nome, salarioBase);
 		setPercentualComissao(percentualComissao);
+		vendas = new ArrayList<Venda>();
 	}
 
 	

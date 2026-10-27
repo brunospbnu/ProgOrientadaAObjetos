@@ -15,8 +15,8 @@ public abstract class Funcionario {
 	}
 	
 	public void setNome(String nome) throws IllegalArgumentException {
-		if (nome.isBlank() || nome.length() <= 3) {
-			throw new IllegalArgumentException("O nome não pode estar em branco e deve ter mais de 3 letras !!!");
+		if (nome.isBlank() || nome.length() < 3) {
+			throw new IllegalArgumentException("O nome não pode estar em branco e deve ter 3 letras ou mais!!!");
 		}
 		this.nome = nome;
 	}
