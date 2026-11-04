@@ -14,9 +14,9 @@ class TesteProjeto {
 		FuncionarioHorista fh = new FuncionarioHorista("Ana", 2, 100, 12);
 		FuncionarioComissionado fc = new FuncionarioComissionado("José", 3, 1000, 5000, 5);
 		
-		e.addfuncionario(fc);
-		e.addfuncionario(fh);
-		e.addfuncionario(ff);
+		e.addFuncionario(fc);
+		e.addFuncionario(fh);
+		e.addFuncionario(ff);
 		
 		assertEquals("Pedro", ff.getNome());
 		assertEquals(1, ff.getMatricula());

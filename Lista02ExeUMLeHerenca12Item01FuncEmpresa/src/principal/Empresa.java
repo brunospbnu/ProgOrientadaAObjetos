@@ -23,7 +23,7 @@ public class Empresa {
 		this.funcionarios = funcionarios;
 	}
 	
-	public void addfuncionario(Funcionario funcInformado) throws IllegalArgumentException {
+	public void addFuncionario(Funcionario funcInformado) throws IllegalArgumentException {
 		if (funcInformado == null) {
 			throw new IllegalArgumentException("O funcionário não pode ser nulo !!!");
 		}
