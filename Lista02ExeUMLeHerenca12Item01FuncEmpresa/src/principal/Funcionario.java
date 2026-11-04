@@ -5,7 +5,7 @@ public abstract class Funcionario {
 	private String nome;
 	private int matricula;
 	
-	public Funcionario(String nomeInformado, int matriculaInformada) {
+	public Funcionario(String nomeInformado, int matriculaInformada) throws IllegalArgumentException {
 		setNome(nomeInformado);
 		setMatricula(matriculaInformada);
 	}
@@ -14,7 +14,10 @@ public abstract class Funcionario {
 		return nome;
 	}
 	
-	public void setNome(String nome) {
+	public void setNome(String nome) throws IllegalArgumentException {
+		if (nome.isBlank() || nome.length() < 3) {
+			throw new IllegalArgumentException("O nome não pode estar em branco e deve ter 3 letras ou mais!!!");
+		}
 		this.nome = nome;
 	}
 
@@ -22,16 +25,16 @@ public abstract class Funcionario {
 		return matricula;
 	}
 
-	public void setMatricula(int matricula) {
+	public void setMatricula(int matricula)  throws IllegalArgumentException {
+		if (matricula <= 0) {
+			throw new IllegalArgumentException("O número de matrícula deve ser maior que 0 !!!");
+		}
 		this.matricula = matricula;
 	}
 	
 	
 	public String exibirDados() {
-		String texto = "";
-		
-		//TODO fazer metodo.
-		
+		String texto = "Nome: " + nome + " - Matrícula: " + matricula + " - Salário: R$ " + calcularSalario();
 		return texto;
 	}
 	

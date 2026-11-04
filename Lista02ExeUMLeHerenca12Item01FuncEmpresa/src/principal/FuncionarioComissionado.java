@@ -7,7 +7,7 @@ public class FuncionarioComissionado extends Funcionario{
 	private double percentualComissao;
 	
 	
-	public FuncionarioComissionado(String nomeInformado, int matriculaInformada, double salarioBaseInformado, double totalVendasInfo, double percComissInfo) {
+	public FuncionarioComissionado(String nomeInformado, int matriculaInformada, double salarioBaseInformado, double totalVendasInfo, double percComissInfo) throws IllegalArgumentException {
 		super(nomeInformado, matriculaInformada);
 		setSalarioBase(salarioBaseInformado);
 		setTotalVendas(totalVendasInfo);
@@ -18,7 +18,10 @@ public class FuncionarioComissionado extends Funcionario{
 		return salarioBase;
 	}
 
-	public void setSalarioBase(double salarioBase) {
+	public void setSalarioBase(double salarioBase) throws IllegalArgumentException {
+		if (salarioBase <=0) {
+			throw new IllegalArgumentException("O salário deve ser maior do que zero !!!");
+		}
 		this.salarioBase = salarioBase;
 	}
 
@@ -26,7 +29,10 @@ public class FuncionarioComissionado extends Funcionario{
 		return totalVendas;
 	}
 
-	public void setTotalVendas(double totalVendas) {
+	public void setTotalVendas(double totalVendas) throws IllegalArgumentException {
+		if (totalVendas <=0) {
+			throw new IllegalArgumentException("O total de vendas deve ser maior do que zero !!!");
+		}
 		this.totalVendas = totalVendas;
 	}
 
@@ -34,14 +40,17 @@ public class FuncionarioComissionado extends Funcionario{
 		return percentualComissao;
 	}
 
-	public void setPercentualComissao(double percentualComissao) {
-		this.percentualComissao = percentualComissao;
+	public void setPercentualComissao(double percentualComissao) throws IllegalArgumentException {
+		if (percentualComissao <= 0) {
+			throw new IllegalArgumentException("O percentural de comissão deve ser maior do que zero !!!");
+		}
+		this.percentualComissao = percentualComissao /100;
 	}
 	
 	@Override
 	public double calcularSalario() {
-		// TODO Auto-generated method stub
-		return 0;
+		double salario = getSalarioBase() + (getTotalVendas() * getPercentualComissao());
+		return salario;
 	}
 
 }

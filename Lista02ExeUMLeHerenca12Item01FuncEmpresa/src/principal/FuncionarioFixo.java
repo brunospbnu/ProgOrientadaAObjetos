@@ -4,7 +4,7 @@ public class FuncionarioFixo extends Funcionario {
 	
 	private double salarioBase;
 	
-	public FuncionarioFixo(String nomeInformado, int matriculaInformada, double salarioBaseInformado) {
+	public FuncionarioFixo(String nomeInformado, int matriculaInformada, double salarioBaseInformado) throws IllegalArgumentException {
 		super(nomeInformado, matriculaInformada);
 		setSalarioBase(salarioBaseInformado);
 	}
@@ -14,15 +14,18 @@ public class FuncionarioFixo extends Funcionario {
 		return salarioBase;
 	}
 
-	public void setSalarioBase(double salarioBase) {
+	public void setSalarioBase(double salarioBase) throws IllegalArgumentException {
+		if (salarioBase <=0) {
+			throw new IllegalArgumentException("O salário deve ser maior do que zero !!!");
+		}
 		this.salarioBase = salarioBase;
 	}
 	
 	
 	@Override
 	public double calcularSalario() {
-		// TODO Auto-generated method stub
-		return 0;
+		double salario = getSalarioBase();
+		return salario;
 	}
 
 
