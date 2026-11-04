@@ -50,16 +50,21 @@ public class Locadora {
 		Veiculo veiculoMaiorValor = veiculos.get(0);
 		boolean empate = false;
 		
-		for (Veiculo veiculoAtual : veiculos) {
+		for (int i = 0; i < veiculos.size(); i++) {
+			Veiculo veiculoAtual = veiculos.get(i);
 			if (veiculoAtual.calcularAluguel() > veiculoMaiorValor.calcularAluguel()) {
 				veiculoMaiorValor = veiculoAtual;
 			}
-			if (veiculoAtual.calcularAluguel() == veiculoMaiorValor.calcularAluguel()) {
+		}
+		
+		for (int i = 0; i < veiculos.size(); i++) {
+			Veiculo veiculoAtual = veiculos.get(i);
+			if (veiculoAtual.calcularAluguel() == veiculoMaiorValor.calcularAluguel() && veiculoAtual != veiculoMaiorValor) {
 				empate = true;
 			}
 		}
 		
-		if (empate) {
+		if (empate == true) {
 			texto += "***OBS: Atenção, houve empate, mostrando apenas o primeiro veiculo maior da lista que foi encontrado \n";
 		}
 		
