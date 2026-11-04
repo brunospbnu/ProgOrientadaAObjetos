@@ -32,15 +32,19 @@ public class Caminhao extends Veiculo {
 
 	@Override
 	public double calcularAluguel() {
-		// TODO Auto-generated method stub
-		return 0;
+		double valor = 0;
+		int capacidadeTonEmInt = (int) capacidadeToneladas;
+		valor = getValorDiariaBase() + (capacidadeTonEmInt * 100);
+		return valor;
 	}
 
 
 	@Override
 	public String imprimirInformacoes() {
-		// TODO Auto-generated method stub
-		return null;
+		String texto = "Caminhão) Placa: " + getPlaca() + " - Modelo: " + getModelo() + " - Data Inicio Aluguel: " 
+				+ getDataInicioLocacao().format(formatador) + " - Data Fim Aluguel: " + getDataFimLocacao().format(formatador) 
+				+ " - Capacidade: " + getCapacidadeToneladas() + " toneladas - Valor do Aluguel: R$ " + calcularAluguel();
+		return texto;
 	}
 	
 }

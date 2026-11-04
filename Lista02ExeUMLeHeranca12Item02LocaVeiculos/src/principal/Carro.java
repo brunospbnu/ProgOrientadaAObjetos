@@ -32,15 +32,17 @@ public class Carro extends Veiculo{
 	
 	@Override
 	public double calcularAluguel() {
-		// TODO Auto-generated method stub
-		return 0;
+		double valor = getValorDiariaBase() + 50;
+		return valor;
 	}
 
 	
 	@Override
 	public String imprimirInformacoes() {
-		// TODO Auto-generated method stub
-		return null;
+		String texto = "Carro) Placa: " + getPlaca() + " - Modelo: " + getModelo() + " - Data Inicio Aluguel: " 
+						+ getDataInicioLocacao().format(formatador) + " - Data Fim Aluguel: " + getDataFimLocacao().format(formatador) 
+						+ " - Quantidade de Portas: " + getQuantPortas() + " - Valor do Aluguel: R$ " + calcularAluguel();
+		return texto;
 	}
 
 

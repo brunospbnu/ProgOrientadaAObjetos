@@ -27,40 +27,54 @@ public class Locadora {
 	}
 	
 	
-	public void addVeiculo(Veiculo veiculoInformado) {
-		//TODO fazer metodo.
+	public void addVeiculo(Veiculo veiculoInformado) throws IllegalArgumentException {
+		if (veiculoInformado == null) {
+			throw new IllegalArgumentException("O veículo a ser adicionado não pode ser nulo !!!");
+		}
+		veiculos.add(veiculoInformado);
 	}
 	
 	
 	public String impInfoTodos() {
-		String texto = "";
-		
-		
-		//TODO fazer metodo.
-		
-		
+		String texto = "Lista de Veículos: \n";
+		for (Veiculo veiculo : veiculos) {
+			texto += veiculo.imprimirInformacoes() + "\n";
+		}
+		texto += "\n Fim da lista !!! ";
 		return texto;
 	}
 	
 	
 	public String impMaiorValorPagoEVeiculo() {
-		String texto = "";
+		String texto = "Veiculo com maior valor pago: \n";
+		Veiculo veiculoMaiorValor = veiculos.get(0);
+		boolean empate = false;
+		
+		for (Veiculo veiculoAtual : veiculos) {
+			if (veiculoAtual.calcularAluguel() > veiculoMaiorValor.calcularAluguel()) {
+				veiculoMaiorValor = veiculoAtual;
+			}
+			if (veiculoAtual.calcularAluguel() == veiculoMaiorValor.calcularAluguel()) {
+				empate = true;
+			}
+		}
+		
+		if (empate) {
+			texto += "***OBS: Atenção, houve empate, mostrando apenas o primeiro veiculo maior da lista que foi encontrado \n";
+		}
 		
 		
-		//TODO fazer metodo.
-		
-		
+		texto += veiculoMaiorValor.imprimirInformacoes() + "\n";
 		return texto;
 	}
 	
 	
 	public String impQuantVeiculosEValorTot() {
-		String texto = "";
-		
-		
-		//TODO fazer metodo.
-		
-		
+		double valorTotal = 0;
+		for (Veiculo veiculoAtual : veiculos) {
+			valorTotal += veiculoAtual.calcularAluguel();
+		}
+		String texto = "A quantidade de veículos é: " + veiculos.size() + "\n O valor total de alugueis é: R$ " + valorTotal;
 		return texto;
 		
 	}

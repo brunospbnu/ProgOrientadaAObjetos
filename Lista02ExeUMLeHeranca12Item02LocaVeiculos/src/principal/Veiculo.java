@@ -1,9 +1,11 @@
 package principal;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Veiculo {
 	
+	DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	private String placa;
 	private String modelo;
