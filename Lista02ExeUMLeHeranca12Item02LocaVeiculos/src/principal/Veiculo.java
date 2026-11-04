@@ -12,7 +12,8 @@ public abstract class Veiculo {
 	private LocalDate dataFimLocacao;
 	
 	
-	public Veiculo(String placaInformada, String modeloInformado, double valorDiariaBaseInformado, LocalDate dtInicioInformada, LocalDate dtFimInformada) {
+	public Veiculo(String placaInformada, String modeloInformado, double valorDiariaBaseInformado
+			, LocalDate dtInicioInformada, LocalDate dtFimInformada) throws IllegalArgumentException {
 		setPlaca(placaInformada);
 		setModelo(modeloInformado);
 		setValorDiariaBase(valorDiariaBaseInformado);
@@ -26,7 +27,10 @@ public abstract class Veiculo {
 	}
 
 	
-	public void setPlaca(String placa) {
+	public void setPlaca(String placa) throws IllegalArgumentException {
+		if (placa == null || placa.isBlank() || placa.length() != 7) {
+			throw new IllegalArgumentException("A placa deve ter exatamente 7 digitos, e não pode estar em Branco");
+		}
 		this.placa = placa;
 	}
 
@@ -36,7 +40,10 @@ public abstract class Veiculo {
 	}
 
 	
-	public void setModelo(String modelo) {
+	public void setModelo(String modelo) throws IllegalArgumentException {
+		if (modelo == null || modelo.isBlank() || modelo.length() < 2) {
+			throw new IllegalArgumentException("O nome do modelo não pode estar vazio e deve ter 2 letras ou mais");
+		}
 		this.modelo = modelo;
 	}
 
@@ -46,7 +53,10 @@ public abstract class Veiculo {
 	}
 
 	
-	public void setValorDiariaBase(double valorDiariaBase) {
+	public void setValorDiariaBase(double valorDiariaBase)  throws IllegalArgumentException {
+		if (valorDiariaBase <= 0) {
+			throw new IllegalArgumentException("O valor da diária deve ser maior que zero !!!");
+		}
 		this.valorDiariaBase = valorDiariaBase;
 	}
 
@@ -56,7 +66,10 @@ public abstract class Veiculo {
 	}
 
 	
-	public void setDataInicioLocacao(LocalDate dataInicioLocacao) {
+	public void setDataInicioLocacao(LocalDate dataInicioLocacao) throws IllegalArgumentException {
+		if (dataInicioLocacao == null) {
+			throw new IllegalArgumentException("A data não pode ser nula !!!");
+		}
 		this.dataInicioLocacao = dataInicioLocacao;
 	}
 
@@ -66,7 +79,10 @@ public abstract class Veiculo {
 	}
 	
 
-	public void setDataFimLocacao(LocalDate dataFimLocacao) {
+	public void setDataFimLocacao(LocalDate dataFimLocacao) throws IllegalArgumentException {
+		if (dataFimLocacao == null) {
+			throw new IllegalArgumentException("A data não pode ser nula !!!");
+		}
 		this.dataFimLocacao = dataFimLocacao;
 	}
 	

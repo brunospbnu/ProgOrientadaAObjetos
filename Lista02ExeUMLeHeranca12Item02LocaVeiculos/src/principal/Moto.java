@@ -9,7 +9,8 @@ public class Moto extends Veiculo {
 
 	
 	public Moto(String placaInformada, String modeloInformado, double valorDiariaBaseInformado,
-			LocalDate dtInicioInformada, LocalDate dtFimInformada, boolean temCilindradasInfo) {
+			LocalDate dtInicioInformada, LocalDate dtFimInformada, boolean temCilindradasInfo) throws IllegalArgumentException {
+		
 		super(placaInformada, modeloInformado, valorDiariaBaseInformado, dtInicioInformada, dtFimInformada);
 		setTemCilindradas(temCilindradasInfo);
 	}

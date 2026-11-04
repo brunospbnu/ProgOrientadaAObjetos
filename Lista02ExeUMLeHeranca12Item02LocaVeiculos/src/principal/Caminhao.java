@@ -9,9 +9,11 @@ public class Caminhao extends Veiculo {
 
 	
 	public Caminhao(String placaInformada, String modeloInformado, double valorDiariaBaseInformado,
-			LocalDate dtInicioInformada, LocalDate dtFimInformada, double capTonInformada) {
+			LocalDate dtInicioInformada, LocalDate dtFimInformada, double capTonInformada) throws IllegalArgumentException {
+		
 		super(placaInformada, modeloInformado, valorDiariaBaseInformado, dtInicioInformada, dtFimInformada);
 		setCapacidadeToneladas(capTonInformada);
+		
 	}
 
 	
@@ -20,7 +22,10 @@ public class Caminhao extends Veiculo {
 	}
 
 	
-	public void setCapacidadeToneladas(double capacidadeToneladas) {
+	public void setCapacidadeToneladas(double capacidadeToneladas) throws IllegalArgumentException {
+		if (capacidadeToneladas <= 0) {
+			throw new IllegalArgumentException("A capacidade deve ser maior que zero !!!");
+		}
 		this.capacidadeToneladas = capacidadeToneladas;
 	}
 

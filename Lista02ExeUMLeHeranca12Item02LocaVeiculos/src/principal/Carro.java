@@ -9,9 +9,11 @@ public class Carro extends Veiculo{
 
 	
 	public Carro(String placaInformada, String modeloInformado, double valorDiariaBaseInformado,
-			LocalDate dtInicioInformada, LocalDate dtFimInformada, int qntPortasInformada) {
+			LocalDate dtInicioInformada, LocalDate dtFimInformada, int qntPortasInformada) throws IllegalArgumentException {
+		
 		super(placaInformada, modeloInformado, valorDiariaBaseInformado, dtInicioInformada, dtFimInformada);
 		setQuantPortas(qntPortasInformada);
+		
 	}
 	
 	
@@ -20,7 +22,10 @@ public class Carro extends Veiculo{
 	}
 
 	
-	public void setQuantPortas(int quantPortas) {
+	public void setQuantPortas(int quantPortas) throws IllegalArgumentException {
+		if (quantPortas < 1) {
+			throw new IllegalArgumentException("A quantidade de portas não pode ser menor que 1 !!!");
+		}
 		this.quantPortas = quantPortas;
 	}
 	
