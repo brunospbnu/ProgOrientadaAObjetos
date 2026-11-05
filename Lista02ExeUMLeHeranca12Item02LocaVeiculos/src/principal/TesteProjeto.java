@@ -19,8 +19,8 @@ class TesteProjeto {
 		Moto m2 = new Moto("MOO1I30", "Honda CG 160", 50, LocalDate.of(2026, 01, 01), LocalDate.of(2026, 1, 6), true);
 		Moto m3 = new Moto("MOO1I31", "Honda CG 160", 50, LocalDate.of(2026, 01, 01), LocalDate.of(2026, 1, 7), false);
 		Moto m4 = new Moto("MOO1I32", "Honda CG 160", 50, LocalDate.of(2026, 01, 01), LocalDate.of(2026, 1, 7), true);
-		Moto m5 = new Moto("MOO1I33", "Honda CG 160", 50, LocalDate.of(2026, 01, 01), LocalDate.of(2026, 1, 8), false);
-		Moto m6 = new Moto("MOO1I34", "Honda CG 160", 50, LocalDate.of(2026, 01, 01), LocalDate.of(2026, 1, 8), true);
+		Moto m5 = new Moto("MOO1I33", "Honda CG 160", 50, LocalDate.of(2026, 01, 01), LocalDate.of(2026, 1, 9), false);
+		Moto m6 = new Moto("MOO1I34", "Honda CG 160", 50, LocalDate.of(2026, 01, 01), LocalDate.of(2026, 1, 9), true);
 		
 		
 		Caminhao t1 = new Caminhao("TOO1I29", "Mercedes-Benz L-1113", 200, LocalDate.of(2026, 01, 01), LocalDate.of(2026, 1, 6), 1.3);
@@ -63,27 +63,30 @@ class TesteProjeto {
 		
 		//Testando calculos e dados:
 		
+		System.out.println(l.impInfoTodos());
+		
 		assertEquals("Lista de Veículos: \n"
-				+ "Carro) Placa: COO1I29 - Modelo: HB20 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Quantidade de Portas: 4 - Valor do Aluguel: R$ 150.0\n"
-				
-				+ "Moto) Placa: MOO1I29 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Tem cilindradas? : NÃO - Valor do Aluguel: R$ 50.0\n"
-				+ "Moto) Placa: MOO1I30 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Tem cilindradas? : SIM - Valor do Aluguel: R$ 50.0\n"
-				+ "Moto) Placa: MOO1I31 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 07/01/2026 - Tem cilindradas? : NÃO - Valor do Aluguel: R$ 50.0\n"
-				+ "Moto) Placa: MOO1I32 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 07/01/2026 - Tem cilindradas? : SIM - Valor do Aluguel: R$ 50.0\n"
-				+ "Moto) Placa: MOO1I33 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 08/01/2026 - Tem cilindradas? : NÃO - Valor do Aluguel: R$ 45.0\n"
-				+ "Moto) Placa: MOO1I34 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 08/01/2026 - Tem cilindradas? : SIM - Valor do Aluguel: R$ 47.5\n"
-				
-				+ "Caminhão) Placa: TOO1I29 - Modelo: Mercedes-Benz L-1113 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Capacidade: 1.3 toneladas - Valor do Aluguel: R$ 300.0\n"
-				+ "Caminhão) Placa: TOO1I30 - Modelo: Mercedes-Benz L-1113 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Capacidade: 2.1 toneladas - Valor do Aluguel: R$ 400.0\n"
+				+ "Carro) Placa: COO1I29 - Modelo: HB20 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Quantidade de Portas: 4 - Valor do Aluguel: R$ 550.0\n"
+				+ "Moto) Placa: MOO1I29 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Tem cilindradas? : NÃO - Valor do Aluguel: R$ 250.0\n"
+				+ "Moto) Placa: MOO1I30 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Tem cilindradas? : SIM - Valor do Aluguel: R$ 250.0\n"
+				+ "Moto) Placa: MOO1I31 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 07/01/2026 - Tem cilindradas? : NÃO - Valor do Aluguel: R$ 300.0\n"
+				+ "Moto) Placa: MOO1I32 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 07/01/2026 - Tem cilindradas? : SIM - Valor do Aluguel: R$ 300.0\n"
+				+ "Moto) Placa: MOO1I33 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 09/01/2026 - Tem cilindradas? : NÃO - Valor do Aluguel: R$ 360.0\n"
+				+ "Moto) Placa: MOO1I34 - Modelo: Honda CG 160 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 09/01/2026 - Tem cilindradas? : SIM - Valor do Aluguel: R$ 380.0\n"
+				+ "Caminhão) Placa: TOO1I29 - Modelo: Mercedes-Benz L-1113 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Capacidade: 1.3 toneladas - Valor do Aluguel: R$ 1100.0\n"
+				+ "Caminhão) Placa: TOO1I30 - Modelo: Mercedes-Benz L-1113 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Capacidade: 2.1 toneladas - Valor do Aluguel: R$ 1200.0\n"
 				+ "\n"
 				+ " Fim da lista !!! ", l.impInfoTodos());
 		
 		assertEquals("Veiculo com maior valor pago: \n"
-				+ "Caminhão) Placa: TOO1I30 - Modelo: Mercedes-Benz L-1113 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Capacidade: 2.1 toneladas - Valor do Aluguel: R$ 400.0\n", l.impMaiorValorPagoEVeiculo());
+				+ "Caminhão) Placa: TOO1I30 - Modelo: Mercedes-Benz L-1113 - Data Inicio Aluguel: 01/01/2026 - Data Fim Aluguel: 06/01/2026 - Capacidade: 2.1 toneladas - Valor do Aluguel: R$ 1200.0\n", l.impMaiorValorPagoEVeiculo());
 		
+		System.out.println(l.impMaiorValorPagoEVeiculo());
 		
 		assertEquals("A quantidade de veículos é: 9\n"
-				+ " O valor total de alugueis é: R$ 1142.5", l.impQuantVeiculosEValorTot());
+				+ " O valor total de alugueis é: R$ 4690.0", l.impQuantVeiculosEValorTot());
+		
+		System.out.println(l.impQuantVeiculosEValorTot());
 	}
 
 }

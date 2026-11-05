@@ -32,7 +32,7 @@ public class Carro extends Veiculo{
 	
 	@Override
 	public double calcularAluguel() {
-		double valor = getValorDiariaBase() + 50;
+		double valor = (getValorDiariaBase()*calcularDiasUso()) + 50;
 		return valor;
 	}
 

@@ -34,7 +34,7 @@ public class Caminhao extends Veiculo {
 	public double calcularAluguel() {
 		double valor = 0;
 		int capacidadeTonEmInt = (int) capacidadeToneladas;
-		valor = getValorDiariaBase() + (capacidadeTonEmInt * 100);
+		valor = (getValorDiariaBase()*calcularDiasUso()) + (capacidadeTonEmInt * 100);
 		return valor;
 	}
 

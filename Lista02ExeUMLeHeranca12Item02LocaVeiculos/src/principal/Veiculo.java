@@ -85,7 +85,14 @@ public abstract class Veiculo {
 		if (dataFimLocacao == null) {
 			throw new IllegalArgumentException("A data não pode ser nula !!!");
 		}
+		if (dataFimLocacao.isBefore(dataInicioLocacao)) {
+			throw new IllegalArgumentException("A data fim não pode ser antes da data inicio da locação !!!");
+		}
 		this.dataFimLocacao = dataFimLocacao;
+	}
+	
+	public long calcularDiasUso() {
+	    return getDataFimLocacao().toEpochDay() - getDataInicioLocacao().toEpochDay();
 	}
 	
 	

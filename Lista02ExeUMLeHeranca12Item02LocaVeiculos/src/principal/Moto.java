@@ -29,16 +29,15 @@ public class Moto extends Veiculo {
 	@Override
 	public double calcularAluguel() {
 		double valor = 0;
-		if (getDataInicioLocacao().plusDays(6).isBefore(getDataFimLocacao())) {
+		valor = getValorDiariaBase() * calcularDiasUso();
+		
+		if (calcularDiasUso() > 7) {
 			if (this.temCilindradas) {
-				valor = getValorDiariaBase() * 0.95;
+				valor = valor * 0.95;
 			}
 			else {
-				valor = getValorDiariaBase() * 0.9;
+				valor = valor * 0.9;
 			}
-		}
-		else {
-			valor = getValorDiariaBase();
 		}
 		return valor;
 	}

@@ -19,7 +19,7 @@ public class Locadora {
 	}
 
 
-	public void setVeiculos(List<Veiculo> veiculos) throws IllegalArgumentException {
+	public void setVeiculos(List<Veiculo> veiculos) throws IllegalArgumentException, IllegalStateException {
 		if (veiculos == null) {
 			throw new IllegalArgumentException("A lista de veiculos não pode ser nula !!!");
 		}
@@ -45,7 +45,10 @@ public class Locadora {
 	}
 	
 	
-	public String impMaiorValorPagoEVeiculo() {
+	public String impMaiorValorPagoEVeiculo() throws IllegalStateException {
+		if (veiculos.isEmpty()) {
+		    throw new IllegalStateException("Nenhum veículo locado cadastrado!");
+		}
 		String texto = "Veiculo com maior valor pago: \n";
 		Veiculo veiculoMaiorValor = veiculos.get(0);
 		boolean empate = false;
