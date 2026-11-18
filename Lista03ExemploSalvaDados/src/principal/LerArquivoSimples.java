@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class LerDados {
+public class LerArquivoSimples {
 	
 	public static void main(String[] args) {
 		File f = new File("C:\\Users\\bpatricio\\Desktop\\dados.bat");
@@ -29,6 +29,7 @@ public class LerDados {
 				}
 			}
 			fis.close();
+			// somente no objeto mais interno é necessário dar o close.
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
