@@ -1,4 +1,4 @@
-package principal;
+package binarioSimples;
 
 import java.io.DataOutputStream;
 import java.io.File;

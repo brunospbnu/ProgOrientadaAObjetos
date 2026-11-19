@@ -1,4 +1,4 @@
-package principal;
+package binarioSimples;
 
 import java.io.File;
 import java.io.FileNotFoundException;
