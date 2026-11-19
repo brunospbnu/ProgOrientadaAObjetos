@@ -1,0 +1,11 @@
+Primeira linha
+true
+Preço:              1234,50
+nova linha
+nova linha
+nova linha
+nova linha
+nova linha
+nova linha2
+nova linha2
+nova linha2
