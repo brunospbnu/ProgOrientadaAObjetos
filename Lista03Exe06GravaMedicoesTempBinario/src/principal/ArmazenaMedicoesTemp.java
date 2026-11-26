@@ -60,38 +60,29 @@ public class ArmazenaMedicoesTemp {
 	}
 	
 	public void armazenarMedicao(Sensor sensor) throws IOException, FileNotFoundException {
-		
-		FileOutputStream fos = new FileOutputStream(medicoes, true);
-		
-		try (DataOutputStream dos = new DataOutputStream(fos)) {
-			
+		try (FileOutputStream fos = new FileOutputStream(medicoes, true);
+			 DataOutputStream dos = new DataOutputStream(fos)) {
+
 			dos.writeInt(sensor.getCodigo());
 			dos.writeDouble(sensor.getTemperatura());
 			dos.writeBoolean(sensor.isValidada());
-			
-		} catch (FileNotFoundException e) {
-			throw e;
-			
-		} catch (IOException e) {
-			throw e;
 		}
-		
 	}
 	
 	public void carregarMedicoes() throws FileNotFoundException, IOException {
 		
-		FileInputStream fis = new FileInputStream(medicoes);
-		DataInputStream dis = new DataInputStream(fis);
-		
-		while (fis.available() > 0) {
-			int codigo = dis.readInt();
-			double temperatura  = dis.readDouble();
-			boolean validada = dis.readBoolean();
-			
-			Sensor s = new Sensor(codigo, temperatura, validada);
-			sensores.add(s);
-		}
-		dis.close();
+		try (FileInputStream fis = new FileInputStream(medicoes);
+				 DataInputStream dis = new DataInputStream(fis)) {
+
+				while (fis.available() > 0) {
+					int codigo = dis.readInt();
+					double temperatura = dis.readDouble();
+					boolean validada = dis.readBoolean();
+
+					Sensor s = new Sensor(codigo, temperatura, validada);
+					sensores.add(s);
+				}
+			}
 
 	}
 	
