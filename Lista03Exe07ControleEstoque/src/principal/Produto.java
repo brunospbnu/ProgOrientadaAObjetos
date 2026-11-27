@@ -60,6 +60,9 @@ public class Produto {
 		if (qntRemover < 1) {
 			throw new IllegalArgumentException("Não pode ser removido menos que 1 produto");
 		}
+		else if (qntRemover > qntDisponivel) {
+			throw new IllegalArgumentException("Não pode ser removido mais do que a quantidade disponível");
+		}
 		qntDisponivel -= qntRemover;
 	}
 	
